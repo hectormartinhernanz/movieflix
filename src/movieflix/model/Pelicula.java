@@ -4,8 +4,10 @@ public class Pelicula {
 	
 	
 	
-	private int id, anyo, idCat;
+	private int id, anyo;
 	private String nombre;
+	private Categoria cat;
+
 	public int getId() {
 		return id;
 	}
@@ -18,11 +20,11 @@ public class Pelicula {
 	public void setAnyo(int anyo) {
 		this.anyo = anyo;
 	}
-	public int getIdCat() {
-		return idCat;
+	public Categoria getCat() {
+		return cat;
 	}
-	public void setIdCat(int idCat) {
-		this.idCat = idCat;
+	public void setCat(Categoria cat) {
+		this.cat = cat;
 	}
 	public String getNombre() {
 		return nombre;
