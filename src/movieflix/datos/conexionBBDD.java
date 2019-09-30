@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @version: 30/09/2019
  */
 
-public class conexionBBDD {
+public class ConexionBBDD {
 /**
 *Este método devuelve un ResultSet para las consultas
 **/
@@ -73,10 +73,11 @@ public static void sentenciaInsertUpdateDeleteBBDD (String sentencia) {
 	Connection connection = null;
 	java.sql.Statement st = null;
 	
+	
 	try {
 		
 		String driverClassName = "com.mysql.jdbc.Driver";
-		String driverUrl = "jdbc:mysql://10.90.36.111:3306/movieflix";
+		String driverUrl = "jdbc:mysql://10.90.36.111/movieflix";
 		String user = "root";
 		String password = "password";
 		Class.forName(driverClassName);
