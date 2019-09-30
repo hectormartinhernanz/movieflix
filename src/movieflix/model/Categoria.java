@@ -1,3 +1,6 @@
+/*
+ * @author: Pedro Javier Umpiérrez Fernández
+ * @version: 30/09/2019*/
 package movieflix.model;
 
 public class Categoria {
