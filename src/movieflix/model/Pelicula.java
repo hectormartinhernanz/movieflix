@@ -3,10 +3,10 @@ package movieflix.model;
 public class Pelicula {
 	
 	
-	
 	private int id, anyo;
 	private String nombre;
 	private Categoria cat;
+	
 
 	public int getId() {
 		return id;
@@ -32,7 +32,6 @@ public class Pelicula {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 	
 
 }
