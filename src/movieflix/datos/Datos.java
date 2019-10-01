@@ -1,5 +1,5 @@
 package movieflix.datos;
 
-public class Altas {
+public class Datos {
 
 }
