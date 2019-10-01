@@ -14,7 +14,8 @@ public interface IMovieServ {
 	
 	public boolean altaPelicula();
 	public boolean bajaPelicula();
-	public ArrayList<Pelicula>mostrarListaPelicula();
+	//public ArrayList<Pelicula>mostrarListaPelicula();
+	public boolean mostrarListaPelicula();
 	public boolean modificarPelicula(Pelicula p);
 
 }

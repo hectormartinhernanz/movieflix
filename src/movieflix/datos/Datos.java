@@ -119,8 +119,33 @@ public class Datos implements IDatos {
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try{
+		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+		String sql = "SELECT * FROM peliculas;";
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while(rs.next()) 
+		{
+			//lista.add(new Pelicula(1,"hola",1,1));
+			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+			///rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)
+			
+		}
+		st.close();
+		rs.close();
+		return lista;
+		}
+		catch(SQLException e) {
+			System.out.println("Error con base de datos: "+e.toString());
+
+			return null;}
+		finally {
+
+		}
+		
+		
 	}
 
 	@Override

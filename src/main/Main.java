@@ -7,8 +7,6 @@ import movieflix.control.ControlMenu;
  * @author H�ctor Mart�n 
  *@version 01/10/2019
  */
-
-import movieflix.datos.Datos;
 public class Main {
 	public static void main(String[] args) {
 		ControlMenu.mostrarMenu();
