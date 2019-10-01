@@ -1,5 +1,5 @@
 package movieflix.servicios;
 
-public class Bajas {
+public interface IMovieServ {
 
 }

@@ -1,3 +1,8 @@
+/*
+ * @author: Rocio Borrazás
+ * @version: 30/09/2019*/
+
+
 package movieflix.model;
 
 public class Pelicula {
