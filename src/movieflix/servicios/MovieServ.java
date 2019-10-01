@@ -17,9 +17,7 @@ import java.text.ParseException;
 
 public class MovieServ implements IMovieServ {
 	
-	//Conectar con la base de datos
-	Datos d = new Datos();
-	
+	Datos d = new Datos();	
 	
 	public MovieServ() {
 			
