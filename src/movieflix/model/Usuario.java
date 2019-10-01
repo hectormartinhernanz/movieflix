@@ -31,7 +31,23 @@ public class Usuario {
 	}
 	public void setCiudadResidencia(String ciudadResidencia) {
 		this.ciudadResidencia = ciudadResidencia;
+	}	
+	
+	public Usuario(String nombre, Date fechaNacimiento, String ciudadResidencia) {
+		super();
+		this.nombre = nombre;
+		this.fechaNacimiento = fechaNacimiento;
+		this.ciudadResidencia = ciudadResidencia;
 	}
+	
+	public Usuario(String nombre, Date fechaNacimiento) {
+		super();
+		this.nombre = nombre;
+		this.fechaNacimiento = fechaNacimiento;
+		
+	}	
+	
+	
 	public Usuario(int id, String nombre, Date fechaNacimiento) {
 		super();
 		this.id = id;
