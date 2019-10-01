@@ -15,5 +15,4 @@ public interface IDatos {
 	public boolean bajaPelicula();
 	public ArrayList<Pelicula>obtenerListaPelicula();
 	public boolean modificarPelicula(Pelicula p);
-	
 }
