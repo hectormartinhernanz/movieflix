@@ -7,6 +7,7 @@ public class Main {
 
 		 Test.pruebas();
 		 Test.pruebas();
+		 Test.pruebas();
 	}
 
 }
