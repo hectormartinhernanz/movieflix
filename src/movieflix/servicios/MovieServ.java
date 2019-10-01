@@ -1,6 +1,6 @@
 /*
- * @Pedro Javier Umpiérrez Fernández
- * Se crean los métodos para dar de alta y baja los usuarios, las películas, para modificar ambos y se muestra la lista de las peliculas
+ * @Pedro Javier Umpiï¿½rrez Fernï¿½ndez
+ * Se crean los mï¿½todos para dar de alta y baja los usuarios, las pelï¿½culas, para modificar ambos y se muestra la lista de las peliculas
  * */
 package movieflix.servicios;
 import movieflix.utilidades.LeerDatos;
@@ -24,7 +24,7 @@ public class MovieServ { //implements IMovieServ {
 	public MovieServ() {
 			
 	}
-	/**/	
+		
 	public boolean altaUsuario() {
 		
 		System.out.println("Introduzca el nombre del usuario a dar de alta");
@@ -64,28 +64,38 @@ public class MovieServ { //implements IMovieServ {
 	public boolean bajaUsuario(){
 		System.out.println("Introduzca el id del usuario para darle de baja");
 		int id=LeerDatos.tecladoInt();
-		d.bajaPelicula(id);						
+		d.bajaUsuario(id);
+		//
 		return true;
 	}
 	
-	//public ArrayList<Usuario> mostrarListaUsuario() { 	
-	//}
-	//public boolean modificarUsuario(Usuario u);{}
+	public ArrayList<Usuario> mostrarListaUsuario() { 
+		
+	}
+	public boolean modificarUsuario(Usuario u){
+		
+	}
 	
 	public boolean altaPelicula() {		
-		System.out.println("Introduzca el nombre de la película a dar de alta");
+		System.out.println("Introduzca el nombre de la pelï¿½cula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
-		Pelicula p = new Pelicula();
-		d.altaPelicula(p);
+		System.out.println("Introduzca el anyo de la pelï¿½cula");
+		int anyo = LeerDatos.tecladoInt();
+		System.out.println("Introduzca la categorï¿½a de la pelï¿½cula");
+		int cat = LeerDatos.tecladoInt();	
+		//crear pelï¿½cula
+		Pelicula p = new Pelicula(nombre,anyo,cat);
+		d.altaPelicula(p);		
 		return true;
-	}	
-
-}	
-
-	//public boolean bajaPelicula() {
+		}	
 	
-		
-	//}
+	
+	public boolean bajaPelicula() {
+		System.out.println("Introduzca el id de la pelï¿½cula para darle de baja");
+		int id=LeerDatos.tecladoInt();
+		d.bajaPelicula(id);		
+		return true;
+	}
 	
 	//public ArrayList<Pelicula>mostrarListaPelicula();{}
 	//public boolean modificarPelicula(Pelicula p);{}	
