@@ -26,7 +26,7 @@ public class ControlMenu {
 		System.out.println("(08) ??? ");
 		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
-		procesarOpcion();
+		//procesarOpcion();
 		
 			
 		

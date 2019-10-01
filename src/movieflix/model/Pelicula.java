@@ -8,10 +8,25 @@ package movieflix.model;
 public class Pelicula {
 	
 	
-	private int id, anyo;
+	private int id;
 	private String nombre;
-	private Categoria cat;
-	
+	private int anyo;
+	private int cat;
+
+	public Pelicula(int id, String nombre, int anyo, int cat) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.anyo = anyo;
+		this.cat = cat;
+	}
+
+	public Pelicula(String nombre, int anyo, int cat) {
+		super();
+		this.nombre = nombre;
+		this.anyo = anyo;
+		this.cat = cat;
+	}
 
 	public int getId() {
 		return id;
@@ -25,10 +40,10 @@ public class Pelicula {
 	public void setAnyo(int anyo) {
 		this.anyo = anyo;
 	}
-	public Categoria getCat() {
+	public int getCat() {
 		return cat;
 	}
-	public void setCat(Categoria cat) {
+	public void setCat(int cat) {
 		this.cat = cat;
 	}
 	public String getNombre() {
@@ -37,6 +52,4 @@ public class Pelicula {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-
 }

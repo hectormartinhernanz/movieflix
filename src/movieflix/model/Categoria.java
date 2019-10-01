@@ -7,18 +7,24 @@ package movieflix.model;
 
 public class Categoria {
 	
-	private String id;
+	private int id;
 	private String nombre;
 	
+	
+	public Categoria(int id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public Categoria () {
 		super();	
 	}
 	
-	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -27,8 +33,6 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
 	
 	public String toString() {
 		return "";
