@@ -1,7 +1,13 @@
-/*
- * @author: Pedro Javier Umpiérrez Fernández
- * @version: 30/09/2019*/
-
+/**
+* 
+* Esta clase define el objeto "Categorï¿½a" que es uno de los elementos principales de la aplicaciï¿½n y la base de datos
+* 
+* @author: Pedro Javier Umpiï¿½rrez Fernï¿½ndez
+* @version: 30/09/2019
+* 
+* 
+* 
+*/
 
 package movieflix.model;
 
@@ -10,6 +16,10 @@ public class Categoria {
 	private int id;
 	private String nombre;
 	
+	/**
+	 * 
+	 * Mï¿½todo constructor vacï¿½o por defecto
+	 */
 	
 	public Categoria(int id, String nombre) {
 		super();
@@ -27,13 +37,28 @@ public class Categoria {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
+	/**
+	 * 
+	 * Mï¿½todo get de nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
+	/**
+	 * 
+	 * @param nombre es la categorï¿½a
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
+	
+	/**
+	 * 
+	 * Mï¿½todo to String por defecto
+	 */
 	public String toString() {
 		return "";
 		

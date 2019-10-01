@@ -1,13 +1,14 @@
-/*
- * @author: Rocio Borrazás
- * @version: 30/09/2019*/
-
+/**
+* 
+* Esta clase define el objeto "Pelï¿½cula" que es uno de los elementos principales de la aplicaciï¿½n y la base de datos
+* 
+* @author: Rocio Borrazï¿½s
+* @version: 30/09/2019
+*/
 
 package movieflix.model;
 
 public class Pelicula {
-	
-	
 	private int id;
 	private String nombre;
 	private int anyo;
@@ -31,12 +32,29 @@ public class Pelicula {
 	public int getId() {
 		return id;
 	}
+	/**
+	 * 
+	 * Mï¿½todo set del id
+	 * @param el parï¿½metro id que identifica la pelï¿½cula de forma unï¿½voca
+	 * 
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+	/** 
+	 * Mï¿½todo get Aï¿½o
+	 *@return retorna aï¿½o
+	 */ 
 	public int getAnyo() {
 		return anyo;
 	}
+	
+	/**
+	 * 
+	 * Mï¿½todo set del aï¿½o
+	 * @param aï¿½o 
+	 * 
+	 */
 	public void setAnyo(int anyo) {
 		this.anyo = anyo;
 	}
@@ -46,10 +64,27 @@ public class Pelicula {
 	public void setCat(int cat) {
 		this.cat = cat;
 	}
+	/**
+	 * 
+	 * Mï¿½todo get del nombre
+	 * @return retorna nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
+	/**
+	 * 
+	 * Mï¿½todo set del nombre
+	 * @param nombre
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	@Override
+	public String toString() {
+		return "Codigo identificativo = " + id + ", Nombre = " + nombre + ", ano = " + anyo ;
+	}
+	
+	
 }

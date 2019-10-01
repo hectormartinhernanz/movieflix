@@ -29,25 +29,42 @@ public class Datos implements IDatos {
 	public void cargarInicial() {
 		PreparedStatement ps;
 		try {
-			alPel = new ArrayList();
-			cargarConexion();
 			Pelicula p;
 			String linea;
+			String nombre;
+			int anyo;
+			int idCat;
 			String sql = "SELECT id FROM peliculas";
 			Statement st = conexion.createStatement();
 			ResultSet rs = st.executeQuery(sql);
+			String[] parte;
+
 			if (rs.next() == false) {
 				sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
 				ps = conexion.prepareStatement(sql);
 				BufferedReader br = new BufferedReader(new FileReader("peliculas_numCat.txt"));
+				
 				while(((linea = br.readLine())!=null)) {
-					String[] parte = linea.split(",");
+					parte = linea.split(",");
 					ps.setString(1,parte[0]);
 					ps.setInt(2,Integer.parseInt(parte[1]));
 					ps.setInt(3,Integer.parseInt(parte[2]));
 					ps.executeUpdate();
+					parte = linea.split(",");
+					nombre = parte[0];
+					anyo = Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
+					idCat = Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
+					p = new Pelicula(nombre,anyo,idCat);
+					if(!alPel.contains(p)) {
+						alPel.add(p);
+						ps.setString(1,p.getNombre());
+						ps.setInt(2,p.getAnyo());
+						ps.setInt(3,p.getCat());
+						ps.executeUpdate();
+					}
 				}
 				ps.close();
+				br.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -116,8 +133,35 @@ public class Datos implements IDatos {
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try{
+		
+		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+		String sql = "SELECT * FROM peliculas;";
+		Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+	
+		while(rs.next()) 
+		{
+		
+			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+			
+			
+		}
+		st.close();
+		rs.close();
+		return lista;
+		}
+		catch(SQLException e) {
+			System.out.println("Error con base de datos: "+e.toString());
+
+			return null;}
+		finally {
+
+		}
+		
+		
 	}
 
 	@Override

@@ -7,14 +7,17 @@ public class LeerDatos {
 		
 	}
 	
+	@SuppressWarnings("resource")
 	public static int tecladoInt(){		
 		return new Scanner(System.in).nextInt();
 	}
 	
+	@SuppressWarnings("resource")
 	public static String tecladoString(){		
 		return new Scanner(System.in).next();
 	}	
 	
+	@SuppressWarnings("resource")
 	public static boolean tecladoBoolean(){		
 		return new Scanner(System.in).nextBoolean();
 	}
