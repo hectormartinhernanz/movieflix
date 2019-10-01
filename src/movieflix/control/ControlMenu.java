@@ -22,9 +22,10 @@ public class ControlMenu {
 		System.out.println("(04) Modificar datos de usuario existente");
 		System.out.println("(05) Mostrar datos de usuario existente");
 		System.out.println("(06) Mostrar películas suscritas por un usuario");
-		System.out.println("(07) Mostrar listado general de películas");	
+		System.out.println("(07) Mostrar listado general de películas");
+		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
-		//procesarOpción();
+		procesarOpcion();
 		
 			
 		
