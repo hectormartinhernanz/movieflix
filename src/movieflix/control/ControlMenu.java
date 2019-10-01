@@ -1,12 +1,18 @@
 package movieflix.control;
 
-/*
+/**
  * *Esta clase muestra las opciones al usuario del programa y gestiona las decisiones del mismo
  * @author Héctor Martín Hernanz 
+ * @version 01/10/2019
  */
 
 public class ControlMenu {
 
+	/**
+	 * *Este método muestra las opciones que tiene el usuario. Es llamado cuando se ejecuta el programa y cada vez que 
+	 *  se ejecuta una opción o bien si hay alguna excepción.
+	 */
+	
 	public static void mostrarMenu() 
 	{
 		System.out.println("__________________________________________________________________");
@@ -26,6 +32,8 @@ public class ControlMenu {
 		System.out.println("(08) ??? ");
 		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
+		
+		//Aquí se llama al método que procesa la opción que elige el usuario
 		//procesarOpcion();
 		
 			
