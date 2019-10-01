@@ -1,8 +1,8 @@
 /**
 * 
-* Esta clase define el objeto "Película" que es uno de los elementos principales de la aplicación y la base de datos
+* Esta clase define el objeto "Pelï¿½cula" que es uno de los elementos principales de la aplicaciï¿½n y la base de datos
 * 
-* @author: Rocio Borrazás
+* @author: Rocio Borrazï¿½s
 * @version: 30/09/2019
 */
 
@@ -11,29 +11,41 @@ package movieflix.model;
 public class Pelicula {
 	
 	
-	private int id, anyo;
+	private int id;
 	private String nombre;
-	private Categoria cat;
-	
-	/** 
-	 * Método get Id
-	 *@return retorna id
-	 */ 
+	private int anyo;
+	private int cat;
+
+	public Pelicula(int id, String nombre, int anyo, int cat) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.anyo = anyo;
+		this.cat = cat;
+	}
+
+	public Pelicula(String nombre, int anyo, int cat) {
+		super();
+		this.nombre = nombre;
+		this.anyo = anyo;
+		this.cat = cat;
+	}
+
 	public int getId() {
 		return id;
 	}
 	/**
 	 * 
-	 * Método set del id
-	 * @param el parámetro id que identifica la película de forma unívoca
+	 * Mï¿½todo set del id
+	 * @param el parï¿½metro id que identifica la pelï¿½cula de forma unï¿½voca
 	 * 
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/** 
-	 * Método get Año
-	 *@return retorna año
+	 * Mï¿½todo get Aï¿½o
+	 *@return retorna aï¿½o
 	 */ 
 	public int getAnyo() {
 		return anyo;
@@ -41,33 +53,22 @@ public class Pelicula {
 	
 	/**
 	 * 
-	 * Método set del año
-	 * @param año 
+	 * Mï¿½todo set del aï¿½o
+	 * @param aï¿½o 
 	 * 
 	 */
 	public void setAnyo(int anyo) {
 		this.anyo = anyo;
 	}
-	/**
-	 * 
-	 * Método get de la categoría
-	 * @return retorna categoria
-	 */
-	public Categoria getCat() {
+	public int getCat() {
 		return cat;
 	}
-	
-	/**
-	 * 
-	 * Método set de la categoría
-	 * @param parámetro de la categoría
-	 */
-	public void setCat(Categoria cat) {
+	public void setCat(int cat) {
 		this.cat = cat;
 	}
 	/**
 	 * 
-	 * Método get del nombre
+	 * Mï¿½todo get del nombre
 	 * @return retorna nombre
 	 */
 	public String getNombre() {
@@ -75,12 +76,10 @@ public class Pelicula {
 	}
 	/**
 	 * 
-	 * Método set del nombre
+	 * Mï¿½todo set del nombre
 	 * @param nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-
 }
