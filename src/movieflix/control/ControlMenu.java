@@ -3,6 +3,7 @@ package movieflix.control;
 /*
  * *Esta clase muestra las opciones al usuario del programa y gestiona las decisiones del mismo
  * @author 
+ * @author H�ctor Mart�n Hernanz 
  */
 
 public class ControlMenu {
@@ -27,6 +28,7 @@ public class ControlMenu {
 		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
 		procesarOpcion();
+		//procesarOpcion();
 		
 			
 		
