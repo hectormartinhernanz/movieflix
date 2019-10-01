@@ -76,7 +76,7 @@ public class MovieServ { //implements IMovieServ {
 		return true;
 	}
 	
-	public boolean altaPelicula() {		
+	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pelï¿½cula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
 		System.out.println("Introduzca el anyo de la pelï¿½cula");
@@ -86,7 +86,7 @@ public class MovieServ { //implements IMovieServ {
 		//crear pelï¿½cula
 		Pelicula p = new Pelicula(nombre,anyo,cat);
 		d.altaPelicula(p);		
-		return true;
+		
 		}	
 	
 	
@@ -97,16 +97,16 @@ public class MovieServ { //implements IMovieServ {
 		return true;
 	}
 
-	public boolean mostrarListaPelicula(){
+	public void mostrarListaPelicula(){
 		
+	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las películas disponibles:");
+		System.out.println("Estas son las películas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
 		}
 		
-		return true;
 	}
 	
 }

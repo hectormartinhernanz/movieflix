@@ -14,7 +14,7 @@ public class ControlMenu {
 
 	// private IMovieServ = new MovieServ ();
 
-	public static boolean mostrarMenu() {
+	public static void mostrarMenu() {
 		System.out.println("__________________________________________________________________");
 		System.out.println("__________________                           _____________________");
 		System.out.println("__________________  MOVIEFLIX :ADMIN TOOL    _____________________");
@@ -36,7 +36,7 @@ public class ControlMenu {
 
 		 
 		seleccionOpciones();
-return true;
+
 	
 	}
 	
@@ -45,11 +45,12 @@ return true;
 */
 
 
-public static boolean seleccionOpciones () {
+public static void seleccionOpciones () {
 	
-    boolean continuar = true;		
+  	
 	
 	try {
+		
 		    switch(LeerDatos.tecladoInt()) {
 		    		
 		    		
@@ -92,8 +93,8 @@ public static boolean seleccionOpciones () {
 	
 			//MOSTRAR LISTADO GENERAL DE PELICULAS
 			case 7:
-				System.out.println("OPCIÓN DISPONIBLE PRÓXIMAMENTE");
-				//new MovieServ().mostrarListaPelicula();
+			
+				new MovieServ().mostrarListaPelicula();
 				break;
 	
 			//PARA HACER PRUEBAS
@@ -109,11 +110,11 @@ public static boolean seleccionOpciones () {
 			 }
 		    mostrarMenu();
 	         }catch (Exception e) {
-			System.out.println("error: " + e.toString()  + "    Entrada de teclado errï¿½nea" );
+			System.out.println("error: " + e.toString()  + "    Entrada de teclado erronea" );
 			mostrarMenu();
 			
 	         }
-	return continuar;
+
 	
 
 	}

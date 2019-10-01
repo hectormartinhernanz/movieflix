@@ -61,6 +61,7 @@ public class Datos implements IDatos {
 					}
 				}
 				ps.close();
+				br.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,16 +122,18 @@ public class Datos implements IDatos {
 	public ArrayList<Pelicula> obtenerListaPelicula() {
 		
 		try{
+		
 		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
 		String sql = "SELECT * FROM peliculas;";
-		Statement st = conexion.createStatement();
+		Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery(sql);
-		
+	
 		while(rs.next()) 
 		{
-			//lista.add(new Pelicula(1,"hola",1,1));
+		
 			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
-			///rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)
+			
 			
 		}
 		st.close();
