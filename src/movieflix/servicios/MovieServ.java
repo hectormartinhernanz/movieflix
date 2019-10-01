@@ -15,7 +15,7 @@ import movieflix.model.Usuario;
 import java.text.ParseException;
 
 
-public class MovieServ implements IMovieServ {
+public class MovieServ { //implements IMovieServ {
 	
 	//Conectar con la base de datos
 	Datos d = new Datos();
@@ -68,10 +68,9 @@ public class MovieServ implements IMovieServ {
 		return true;
 	}
 	
-	public ArrayList<Usuario> mostrarListaUsuario() { 
-		
-	}
-	public boolean modificarUsuario(Usuario u);{}
+	//public ArrayList<Usuario> mostrarListaUsuario() { 	
+	//}
+	//public boolean modificarUsuario(Usuario u);{}
 	
 	public boolean altaPelicula() {		
 		System.out.println("Introduzca el nombre de la película a dar de alta");
@@ -80,13 +79,14 @@ public class MovieServ implements IMovieServ {
 		d.altaPelicula(p);
 		return true;
 	}	
+
+}	
+
+	//public boolean bajaPelicula() {
 	
-	
-	public boolean bajaPelicula() {
 		
-		
-	}
+	//}
 	
-	public ArrayList<Pelicula>mostrarListaPelicula();{}
-	public boolean modificarPelicula(Pelicula p);{}	
-}
+	//public ArrayList<Pelicula>mostrarListaPelicula();{}
+	//public boolean modificarPelicula(Pelicula p);{}	
+//}
