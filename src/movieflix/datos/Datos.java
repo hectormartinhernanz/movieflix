@@ -29,42 +29,25 @@ public class Datos implements IDatos {
 	public void cargarInicial() {
 		PreparedStatement ps;
 		try {
-			Pelicula p;
 			String linea;
-			String nombre;
-			int anyo;
-			int idCat;
-			String sql = "SELECT id FROM peliculas";
-			Statement st = conexion.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			String[] parte;
-
-			if (rs.next() == false) {
-				sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
-				ps = conexion.prepareStatement(sql);
-				BufferedReader br = new BufferedReader(new FileReader("peliculas_numCat.txt"));
-
-				while (((linea = br.readLine()) != null)) {
-					parte = linea.split(",");
-					ps.setString(1, parte[0]);
-					ps.setInt(2, Integer.parseInt(parte[1]));
-					ps.setInt(3, Integer.parseInt(parte[2]));
-					ps.executeUpdate();
-					parte = linea.split(",");
-					nombre = parte[0];
-					anyo = Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
-					idCat = Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
-					p = new Pelicula(nombre, anyo, idCat);
-					if (!alPel.contains(p)) {
-						alPel.add(p);
-						ps.setString(1, p.getNombre());
-						ps.setInt(2, p.getAnyo());
-						ps.setInt(3, p.getCat());
-						ps.executeUpdate();
-					}
-				}
-				ps.close();
-				br.close();
+            String sql = "SELECT id FROM peliculas";
+            cargarConexion();
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            String[] parte;
+            if (rs.next() == false) {
+                sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
+                ps = conexion.prepareStatement(sql);
+                BufferedReader br = new BufferedReader(new FileReader("peliculas_numCat.txt"));
+                while (((linea = br.readLine()) != null)) {
+                    parte = linea.split(",");
+                    ps.setString(1, parte[0]);
+                    ps.setInt(2, Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", "")));
+                    ps.setInt(3, Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", "")));
+                    ps.executeUpdate();
+                }
+                ps.close();
+                br.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
