@@ -1,7 +1,7 @@
 package main;
 
 import movieflix.control.ControlMenu;
-
+import movieflix.datos.Datos;
 /**
  * El m�todo principal, aqu� comienza todo
  * @author H�ctor Mart�n 
@@ -9,6 +9,7 @@ import movieflix.control.ControlMenu;
  */
 public class Main {
 	public static void main(String[] args) {
+		new Datos().cargarInicial();
 		ControlMenu.mostrarMenu();
 	}
 
