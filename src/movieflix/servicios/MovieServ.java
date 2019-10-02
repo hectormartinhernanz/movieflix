@@ -37,7 +37,7 @@ public class MovieServ { //implements IMovieServ {
 			fechaDate = formato.parse(fecha);
 		}
 		catch (ParseException ex) {
-			System.out.println(ex);
+			System.out.println("Has introducido mal fecha");
 		}				
 		
 		
@@ -149,6 +149,7 @@ public class MovieServ { //implements IMovieServ {
 		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
 		int tecl=LeerDatos.tecladoInt();
 		d.obtenerListaPeliculasSuscritas(tecl);
+		mostrarListaPelicula();
 	}
 	
 	public void mostrarListaUsuarios(){

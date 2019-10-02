@@ -64,7 +64,7 @@ public class ControlMenu {
 			// MODIFICAR DATOS DE USUARIO EXISTENTE
 			case 4:
 				new MovieServ().modificarUsuario();
-				System.out.println("Modificaci�n exitosa");
+				System.out.println("Modificacion exitosa");
 				break;
 
 			// MOSTRAR DATOS DE USUARIO EXISTENTE
@@ -76,7 +76,6 @@ public class ControlMenu {
 	        //MOSTRAR PELICULAS CONTRATADAS POR UN USUARIO
 			case 6:
 				new MovieServ().mostrarPeliculasSuscritas();
-				System.out.println("OPCION DISPONIBLE PROXIMAMENTE");
 				break;
 
 			// MOSTRAR LISTADO GENERAL DE PELICULAS
