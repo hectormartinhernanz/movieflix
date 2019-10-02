@@ -94,7 +94,7 @@ public class Datos implements IDatos {
 			@SuppressWarnings("deprecation")
 			String month = ""+(u.getFechaNacimiento().getMonth()+1);//+ 1 porque enero empieza en 0
 			@SuppressWarnings("deprecation")
-			String year = ""+(u.getFechaNacimiento().getYear()+1900);//+1900 porqu el año empieza desde el año 1900
+			String year = ""+(u.getFechaNacimiento().getYear()+1900);//+1900 porqu el aï¿½o empieza desde el aï¿½o 1900
 			if(day.length()<10) {day="0"+day;}
 			if(month.length()<10) {month="0"+month;}
 			
@@ -110,7 +110,7 @@ System.out.println(day+""+month+""+year);
 		conexion.close();
 		}
 		catch(SQLException e) 
-		{System.out.println("Excepción SQL :"+e.toString());}
+		{System.out.println("Excepciï¿½n SQL :"+e.toString());}
 		
 		return false;
 	}
@@ -127,7 +127,7 @@ System.out.println(day+""+month+""+year);
 		return true;
 		}
 		catch(SQLException e) 
-		{System.out.println("Excepción SQL :"+e.toString());}
+		{System.out.println("Excepciï¿½n SQL :"+e.toString());}
 		return false;
 	}
 
@@ -138,7 +138,7 @@ System.out.println(day+""+month+""+year);
 	}
 
 	@Override
-	public boolean modificarUsuario(int id) {
+	public void modificarUsuario(Usuario u) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -188,7 +188,7 @@ System.out.println(day+""+month+""+year);
 	}
 
 	@Override
-	public boolean modificarPelicula(int id) {
+	public void modificarPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -234,7 +234,7 @@ System.out.println(day+""+month+""+year);
 		return lista;
 		}
 		catch(SQLException e) 
-		{System.out.println("Excepción SQL :"+e.toString());}
+		{System.out.println("Excepciï¿½n SQL :"+e.toString());}
 		return null;
 	}
 }
