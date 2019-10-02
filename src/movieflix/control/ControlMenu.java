@@ -27,7 +27,7 @@ public class ControlMenu {
 		System.out.println("(5) Mostrar datos de usuario existente");
 		System.out.println("(6) Mostrar peliculas suscritas por un usuario");
 		System.out.println("(7) Mostrar listado general de peliculas");
-		
+		System.out.println("(8) Mostrar listado general de usuarios");
 		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
 	
@@ -86,7 +86,11 @@ public class ControlMenu {
 				new MovieServ().mostrarListaPelicula();
 				break;
 
-	
+		
+			 case 8:
+				 new MovieServ().mostrarListaUsuarios();
+			 break;
+
 			case 0:
 				System.out.println("Hasta Luego!");
 				System.exit(0);

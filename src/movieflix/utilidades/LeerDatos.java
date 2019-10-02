@@ -14,7 +14,7 @@ public class LeerDatos {
 	
 	@SuppressWarnings("resource")
 	public static String tecladoString(){		
-		return new Scanner(System.in).next();
+		return new Scanner(System.in).nextLine();
 	}	
 	
 	@SuppressWarnings("resource")
