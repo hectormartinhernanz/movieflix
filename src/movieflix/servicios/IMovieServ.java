@@ -1,8 +1,6 @@
 package movieflix.servicios;
 
 import java.util.ArrayList;
-
-import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
 
 public interface IMovieServ {
