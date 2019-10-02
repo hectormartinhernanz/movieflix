@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
+import movieflix.utilidades.LeerDatos;
 
 public class Datos implements IDatos {
 
@@ -143,12 +144,11 @@ System.out.println(day+""+month+""+year);
 		// TODO Auto-generated method stub
 	
 	}
-
-	@Override
-	public void bajaPelicula(int id) {
-		// TODO Auto-generated method stub
 		
 	}
+
+
+
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
@@ -246,6 +246,19 @@ System.out.println(day+""+month+""+year);
 	}
 
 
+	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas() {
+		System.out.println("***CUENTA PREMIUM***   Por defecto todos los Usuarios reciben el listado completo de peliculas\n");
+		
+		String sql = "SELECT * FROM idusuario;";
+		
+					return obtenerListaPelicula();
+		
+  
+    }	
+	
+	
+	
+	
 		
 	}
 
