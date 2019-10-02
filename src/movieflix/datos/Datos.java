@@ -14,7 +14,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
 import movieflix.utilidades.LeerDatos;
@@ -201,8 +200,6 @@ System.out.println(day+""+month+""+year);
 	}
 
 
-
-
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
 		
@@ -282,37 +279,6 @@ System.out.println(day+""+month+""+year);
 	}
 	
 	
-	//*********************************
-	//TERMINAR
-	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas() {
-		ArrayList<Pelicula> lista =null;
-		try {
-			lista = new ArrayList<Pelicula>();
-			String sql = "SELECT idCategoria FROM suscripciones WHERE suscripciones.idusuario=;";
-			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
-			}
-			st.close();
-			rs.close();			
-		} catch (SQLException e) {
-			System.out.println("Error con base de datos: " + e.toString());
-		} finally {
-			try {
-				if (!conexion.isClosed()) {
-					cerrarConexion();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return lista;
-	}
-	//*************************************
-	
 
 	@Override
 	public void modificarUsuario(Usuario U) {
@@ -321,14 +287,18 @@ System.out.println(day+""+month+""+year);
 	}
 
 
-	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas() {
-		System.out.println("***CUENTA PREMIUM***   Por defecto todos los Usuarios reciben el listado completo de peliculas\n");
-		
-		String sql = "SELECT * FROM idusuario;";
-		
-					return obtenerListaPelicula();
-		
-  
+	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas(int id) throws SQLException {
+		System.out.println("***CUENTA PREMIUM***     Por defecto todos los Usuarios reciben el listado completo de peliculas\n");
+		String sql = "SELECT idusuario FROM usuario WHERE idusuarios="+ id +";";
+		cargarConexion();
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		if (rs != null) {
+					
+		}
+		else{System.out.println("No existe ningún usuario con ese id");
+		}
+		return obtenerListaPelicula();
     }	
 	
 	
