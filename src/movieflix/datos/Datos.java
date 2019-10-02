@@ -87,7 +87,7 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public boolean altaUsuario(Usuario u) {
+	public void altaUsuario(Usuario u) {
 		try{
 			@SuppressWarnings("deprecation")
 			String day = ""+u.getFechaNacimiento().getDate();
@@ -112,11 +112,11 @@ System.out.println(day+""+month+""+year);
 		catch(SQLException e) 
 		{System.out.println("Excepci�n SQL :"+e.toString());}
 		
-		return false;
+		
 	}
 
 	@Override
-	public boolean bajaUsuario(int id) {
+	public void bajaUsuario(int id) {
 		try{
 		cargarConexion();
 		String sql = ("DELETE FROM usuarios WHERE id='"+id+"';");
@@ -124,11 +124,11 @@ System.out.println(day+""+month+""+year);
 		st.executeUpdate(sql);
 		
 		cerrarConexion();
-		return true;
+		
 		}
 		catch(SQLException e) 
 		{System.out.println("Excepci�n SQL :"+e.toString());}
-		return false;
+	
 	}
 
 	@Override
@@ -137,39 +137,44 @@ System.out.println(day+""+month+""+year);
 		return null;
 	}
 
-	@Override
-	public void modificarUsuario(Usuario u) {
-		// TODO Auto-generated method stub
-		;
-	}
 
 	@Override
-	public void  altaPelicula(Pelicula p) {
+	public void altaPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
-		;
+	
 	}
 
 	@Override
 	public void bajaPelicula(int id) {
 		// TODO Auto-generated method stub
-		;
+		
 	}
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		
-		try{
-		
-		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
-		String sql = "SELECT * FROM peliculas;";
-		cargarConexion();
-		//Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-	
-		while(rs.next()) 
-		{
-			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+		ArrayList<Pelicula> lista = null;
+		try {
+			lista = new ArrayList<Pelicula>();
+			String sql = "SELECT * FROM peliculas;";
+			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+			}
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println("Error con base de datos: " + e.toString());
+		} finally {
+			try {
+				if (!conexion.isClosed()) {
+					cerrarConexion();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		st.close();
 		rs.close();
@@ -187,11 +192,6 @@ System.out.println(day+""+month+""+year);
 			
 	}
 
-	@Override
-	public void modificarPelicula(Pelicula p) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void cargarConexion() throws SQLException {
 		conexion = DriverManager.getConnection(BBDD, USER, PASSWORD);
@@ -202,39 +202,50 @@ System.out.println(day+""+month+""+year);
 	}
 
 	@Override
-	public ArrayList<Usuario> mostrarUsuario(int id)  {
-		
-		try{
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
-		cargarConexion();
-		String sql = ("SELECT * FROM usuarios WHERE id='"+id+"';");
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		
-		while(rs.next()) 
-		{
-			
-			String fecha = (String) rs.getString(3);
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-			Date fechaDate= null;
-			try {
-				fechaDate = formato.parse(fecha);
+	public ArrayList<Usuario> mostrarUsuario(int id) {
+
+		try {
+			ArrayList<Usuario> lista = new ArrayList<Usuario>();
+			cargarConexion();
+			String sql = ("SELECT * FROM usuarios WHERE id='" + id + "';");
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				String fecha = (String) rs.getString(3);
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date fechaDate = null;
+				try {
+					fechaDate = formato.parse(fecha);
+				} catch (ParseException ex) {
+					System.out.println(ex);
+				}
+				/*
+				 * SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); String
+				 * dateString = format.format( new Date() ); Date date = format.parse (
+				 * "2009-12-31" );
+				 */
+
+				lista.add(new Usuario(rs.getInt(1), rs.getString(2), fechaDate, rs.getString(4)));
 			}
-			catch (ParseException ex) {
-				System.out.println(ex);
-			}	
 
-			
-
-			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+			cerrarConexion();
+			rs.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println("Excepci�n SQL :" + e.toString());
 		}
-		
-		cerrarConexion();
-		rs.close();
-		return lista;
-		}
-		catch(SQLException e) 
-		{System.out.println("Excepci�n SQL :"+e.toString());}
 		return null;
 	}
-}
+
+	@Override
+	public void modificarUsuario(Usuario U) {
+		// TODO Auto-generated method stub
+	
+	}
+
+
+		
+	}
+
