@@ -114,8 +114,8 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento.getDate()+"-"+fechaNacimiento.getMonth()+"-"+(fechaNacimiento.getYear()+1900)+""
-				+ ", ciudadResidencia=" + ciudadResidencia + "]";
+		return "Usuario [id = " + id + ", nombre = " + nombre + ", fechaNacimiento = " + fechaNacimiento.getDate()+"-"+(fechaNacimiento.getMonth()+1)+"-"+(fechaNacimiento.getYear()+1900)+""
+				+ ", ciudadResidencia = " + ciudadResidencia + "]";
 	}
 	
 	

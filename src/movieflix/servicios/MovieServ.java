@@ -11,6 +11,11 @@ import java.util.Date;
 import movieflix.datos.Datos;
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 
 
@@ -65,16 +70,57 @@ public class MovieServ { //implements IMovieServ {
 
 	}
 	
-	public boolean mostrarUsuario() { 
+	public void mostrarUsuario() { 
 		System.out.println("Introduzca el id del usuario para mostrar sus datos");
 		int id=LeerDatos.tecladoInt();
 		ArrayList<Usuario> lista = d.mostrarUsuario(id);
-		
 		for ( Usuario u : lista ) {
 			System.out.println(u.toString());
 		}
-		return true;
 	}
+	
+	/**
+	 * @author rocioBorrazas
+	 * @version 02/10
+	 */
+	
+	public void modificarUsuario(){
+		
+	
+		System.out.println("Introduzca el ID del usuario que desea modificar");
+		int id = LeerDatos.tecladoInt();
+
+		System.out.println("Introduzca el nombre del usuario");
+		String nombre=LeerDatos.tecladoString();
+		
+		System.out.println("Introduzca la fecha de nacimiento (dd/mm/yyyy)");
+		String fecha= LeerDatos.tecladoString();
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaDate= null;
+		try {
+			fechaDate = formato.parse(fecha);
+		}
+		catch (ParseException ex) {
+			System.out.println(ex);
+		}				
+		
+		System.out.println("Si desea modificar la ciudad de residencia, escriba si y pulse enter. De lo contrario, escriba no y pulse enter");
+		String respuesta= LeerDatos.tecladoString();
+		
+		if(respuesta.equalsIgnoreCase("si")) {
+			System.out.println("Escriba la ciudad de residencia");
+			String ciudad=LeerDatos.tecladoString();		
+			Usuario u = new Usuario(id, nombre,fechaDate,ciudad);
+			d.modificarUsuario(u);			
+		}									
+		else {
+			Usuario u = new Usuario (id, nombre, fechaDate);
+			d.modificarUsuario(u);
+		}
+		
+	}
+
 	
 
 	

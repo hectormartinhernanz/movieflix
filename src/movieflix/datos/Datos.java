@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
-import movieflix.utilidades.LeerDatos;
 
 public class Datos implements IDatos {
 
@@ -25,14 +24,17 @@ public class Datos implements IDatos {
 	private final static String USER = "root";
 	private final static String PASSWORD = "password";
 	private static Connection conexion;
-	private static ArrayList<Pelicula> alPel;
-
+	private static ArrayList<Pelicula>alPel;
+	
 	public void cargarInicial() {
 		PreparedStatement ps;
 		try {
+			Pelicula p;
 			String linea;
+			String nombre;
+			int anyo;
+			int idCat;
 			String sql = "SELECT id FROM peliculas";
-			cargarConexion();
 			Statement st = conexion.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			String[] parte;
@@ -41,18 +43,25 @@ public class Datos implements IDatos {
 				sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
 				ps = conexion.prepareStatement(sql);
 				BufferedReader br = new BufferedReader(new FileReader("peliculas_numCat.txt"));
-
-				while (((linea = br.readLine()) != null)) {
+				
+				while(((linea = br.readLine())!=null)) {
 					parte = linea.split(",");
-					ps.setString(1, parte[0]);
-					ps.setInt(2, Integer.parseInt(parte[1]));
-					ps.setInt(3, Integer.parseInt(parte[2]));
+					ps.setString(1,parte[0]);
+					ps.setInt(2,Integer.parseInt(parte[1]));
+					ps.setInt(3,Integer.parseInt(parte[2]));
 					ps.executeUpdate();
 					parte = linea.split(",");
-					ps.setString(1, parte[0]);
-					ps.setInt(2, Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", "")));
-					ps.setInt(3, Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", "")));
-					ps.executeUpdate();
+					nombre = parte[0];
+					anyo = Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
+					idCat = Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
+					p = new Pelicula(nombre,anyo,idCat);
+					if(!alPel.contains(p)) {
+						alPel.add(p);
+						ps.setString(1,p.getNombre());
+						ps.setInt(2,p.getAnyo());
+						ps.setInt(3,p.getCat());
+						ps.executeUpdate();
+					}
 				}
 				ps.close();
 				br.close();
@@ -61,25 +70,27 @@ public class Datos implements IDatos {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			System.out.println("No se encontro el fichero de carga de la base de datos.");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("No se cerro correctamente el fichero.");
-		} finally {
-			try {
-				if (conexion.isClosed()) {
-					cerrarConexion();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(conexion!=null) {
+				try {
+					conexion.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-			} catch (SQLException e) {
-				System.out.println("Fallo a cerrar la conexion");
 			}
 		}
 	}
 
 	@Override
 	public void altaUsuario(Usuario u) {
-		try {
+		try{
 			@SuppressWarnings("deprecation")
-			String day = "" + u.getFechaNacimiento().getDate();
+			String day = ""+u.getFechaNacimiento().getDate();
 			@SuppressWarnings("deprecation")
 			String month = ""+(u.getFechaNacimiento().getMonth()+1);//+ 1 porque enero empieza en 0
 			@SuppressWarnings("deprecation")
@@ -98,22 +109,26 @@ System.out.println(day+""+month+""+year);
 		st.close();
 		conexion.close();
 		}
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
+		
+		
 	}
 
 	@Override
-	public boolean bajaUsuario(int id) {
-		try {
-			cargarConexion();
-			String sql = ("DELETE FROM usuarios WHERE id='" + id + "';");
-			Statement st = conexion.createStatement();
-			st.executeUpdate(sql);
-
-			cerrarConexion();
-			return true;
-		} catch (SQLException e) {
-			System.out.println("Excepci�n SQL :" + e.toString());
+	public void bajaUsuario(int id) {
+		try{
+		cargarConexion();
+		String sql = ("DELETE FROM usuarios WHERE id='"+id+"';");
+		Statement st = conexion.createStatement();
+		st.executeUpdate(sql);
+		
+		cerrarConexion();
+		
 		}
-		return false;
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
+	
 	}
 
 	@Override
@@ -122,42 +137,17 @@ System.out.println(day+""+month+""+year);
 		return null;
 	}
 
-	@Override
-	public void modificarUsuario(Usuario u) {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public void altaPelicula(Pelicula p) {
-		String sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
-		PreparedStatement ps;
-
-		try {
-			cargarConexion();
-			ps = conexion.prepareStatement(sql);
-			ps.setString(1, p.getNombre());
-			ps.setInt(2, p.getAnyo());
-			ps.setInt(3, p.getCat());
-
-			ps.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conexion.isClosed()) {
-					cerrarConexion();
-				}
-			} catch (SQLException e) {
-				System.out.println("Fallo a cerrar la conexion");
-			}
-		}
+		// TODO Auto-generated method stub
+	
 	}
 
 	@Override
 	public void bajaPelicula(int id) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -186,13 +176,22 @@ System.out.println(day+""+month+""+year);
 				e.printStackTrace();
 			}
 		}
+		st.close();
+		rs.close();
+		cerrarConexion();
+		//con.close();
 		return lista;
+		}
+		catch(SQLException e) {
+			System.out.println("Error con base de datos: "+e.toString());
+
+			return null;}
+		finally {
+
+		}
+			
 	}
 
-	@Override
-	public void modificarPelicula(Pelicula p) {
-		// TODO Auto-generated method stub
-	}
 
 	private void cargarConexion() throws SQLException {
 		conexion = DriverManager.getConnection(BBDD, USER, PASSWORD);
@@ -239,4 +238,14 @@ System.out.println(day+""+month+""+year);
 		}
 		return null;
 	}
-}
+
+	@Override
+	public void modificarUsuario(Usuario U) {
+		// TODO Auto-generated method stub
+	
+	}
+
+
+		
+	}
+
