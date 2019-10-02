@@ -24,6 +24,23 @@ public class Usuario {
 	public int getId() {
 		return id;
 	}
+	
+	
+	public Usuario(int id, String nombre, String ciudadResidencia) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.ciudadResidencia = ciudadResidencia;
+	}
+
+
+	public Usuario(int id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+
 	/**
 	* M�todo set id
 	*  @params el id del usuario

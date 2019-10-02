@@ -1,0 +1,9 @@
+1 - Incluir películas en el listado general   [v]
+2 - Gestión de usuarios		[v]
+	2.1 - Dar de alta usuario 	[v]
+	2.2 - Dar de baja usuario	[v]
+	2.3 - Modificar usuario		[v]
+	2.4 - Mostrar  usuario	[v]
+3 - Mostrar películas contratadas por un usuario	[]
+4 - Mostrar listado general de películas	[v]
+
