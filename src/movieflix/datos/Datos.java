@@ -73,31 +73,34 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public boolean altaUsuario(Usuario u) {
-		try{
+	public void altaUsuario(Usuario u) {
+		try {
 			@SuppressWarnings("deprecation")
-			String day = ""+u.getFechaNacimiento().getDate();
+			String day = "" + u.getFechaNacimiento().getDate();
 			@SuppressWarnings("deprecation")
-			String month = ""+(u.getFechaNacimiento().getMonth()+1);
+			String month = "" + (u.getFechaNacimiento().getMonth() + 1);
 			@SuppressWarnings("deprecation")
-			String year = ""+(u.getFechaNacimiento().getYear()+1900);
-			if(day.length()<10) {day="0"+day;}
-			if(month.length()<10) {month="0"+month;}
-			
-System.out.println(day+""+month+""+year);
-		String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) "
-				+ "VALUES ('"+u.getNombre()+"', '"+year+"-"+month+"-"+day+"', '"+u.getCiudadResidencia()+"');");
-		Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD); 
-		Statement st = con.createStatement();
-		st.executeUpdate(sql);
-		
-		st.close();
-		con.close();
+			String year = "" + (u.getFechaNacimiento().getYear() + 1900);
+			if (day.length() < 10) {
+				day = "0" + day;
+			}
+			if (month.length() < 10) {
+				month = "0" + month;
+			}
+
+			System.out.println(day + "" + month + "" + year);
+			String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) " + "VALUES ('"
+					+ u.getNombre() + "', '" + year + "-" + month + "-" + day + "', '" + u.getCiudadResidencia()
+					+ "');");
+			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("Excepci�n SQL :" + e.toString());
 		}
-		catch(SQLException e) 
-		{System.out.println("Excepci�n SQL :"+e.toString());}
-		
-		return false;
 	}
 
 	@Override
@@ -118,18 +121,18 @@ System.out.println(day+""+month+""+year);
 
 	@Override
 	public void altaPelicula(Pelicula p) {
-		String sql="INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
+		String sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
 		PreparedStatement ps;
-		
+
 		try {
 			cargarConexion();
 			ps = conexion.prepareStatement(sql);
-			ps.setString(1,p.getNombre());
-			ps.setInt(2,p.getAnyo());
-			ps.setInt(3,p.getCat());
-			
+			ps.setString(1, p.getNombre());
+			ps.setInt(2, p.getAnyo());
+			ps.setInt(3, p.getCat());
+
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,40 +154,20 @@ System.out.println(day+""+month+""+year);
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		
-		try{
-		
-		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
-		String sql = "SELECT * FROM peliculas;";
-		Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-	
-		while(rs.next()) 
-		{
-		
-			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
-			
-			
-		}
-		st.close();
-		rs.close();
-		con.close();
-		return lista;
-		}
-		catch(SQLException e) {
-			System.out.println("Error con base de datos: "+e.toString());
-
+		ArrayList<Pelicula> lista =null;
+		try {
+			lista = new ArrayList<Pelicula>();
+			String sql = "SELECT * FROM peliculas;";
+			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
 			while (rs.next()) {
 				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
 			}
 			st.close();
-			rs.close();
-			return lista;
+			rs.close();			
 		} catch (SQLException e) {
 			System.out.println("Error con base de datos: " + e.toString());
-
-			return null;
 		} finally {
 			try {
 				if (!conexion.isClosed()) {
@@ -195,7 +178,7 @@ System.out.println(day+""+month+""+year);
 				e.printStackTrace();
 			}
 		}
-
+		return lista;
 	}
 
 	@Override
