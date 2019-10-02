@@ -52,7 +52,7 @@ public class Datos implements IDatos {
 					anyo = Integer.parseInt(parte[1].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
 					idCat = Integer.parseInt(parte[2].replaceAll("\\s*$", "").replaceAll("^\\s*", ""));
 					p = new Pelicula(nombre,anyo,idCat);
-					if(!alPel.contains(p)) {
+					if(!alPel.equals(p)) {
 						alPel.add(p);
 						ps.setString(1,p.getNombre());
 						ps.setInt(2,p.getAnyo());

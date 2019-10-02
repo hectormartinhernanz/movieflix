@@ -69,12 +69,12 @@ public class MovieServ { //implements IMovieServ {
 		return true;
 	}
 	
-	public ArrayList<Usuario> mostrarListaUsuario() { 
+	/*public ArrayList<Usuario> mostrarListaUsuario() { 
 		
 	}
 	public boolean modificarUsuario(Usuario u){
 		
-	}
+	}*/
 	
 	public boolean altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pel�cula a dar de alta");
@@ -99,4 +99,4 @@ public class MovieServ { //implements IMovieServ {
 	
 	//public ArrayList<Pelicula>mostrarListaPelicula();{}
 	//public boolean modificarPelicula(Pelicula p);{}	
-//}
+}
