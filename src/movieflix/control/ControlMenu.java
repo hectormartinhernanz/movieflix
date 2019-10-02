@@ -89,6 +89,7 @@ public static void seleccionOpciones () {
 			case 6:
 				//new MovieServ().
 				System.out.println("OPCIÓN DISPONIBLE PRÓXIMAMENTE");
+				//new MovieServ().mostrarPeliculasSuscritas();
 				break;
 	
 			//MOSTRAR LISTADO GENERAL DE PELICULAS

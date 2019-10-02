@@ -105,7 +105,7 @@ public class MovieServ { //implements IMovieServ {
 	
 	
 	public boolean bajaPelicula() {
-		System.out.println("Introduzca el id de la pel�cula para darle de baja");
+		System.out.println("Introduzca el id de la pelicula para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaPelicula(id);		
 		return true;
@@ -115,7 +115,7 @@ public class MovieServ { //implements IMovieServ {
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las pel�culas disponibles:\n");
+		System.out.println("Estas son las peliculas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -123,6 +123,20 @@ public class MovieServ { //implements IMovieServ {
 		
 	}
 	
+//terminar
+	public void mostrarPeliculasSuscritas() {
+		
+		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
+		int tecl=LeerDatos.tecladoInt();
+		
+		//ArrayList<Pelicula> lista = d.obtenerListaPeliculasSuscritas();
+		System.out.println("Estas son las peliculas suscritas:\n");
+		for(int i=0; i<lista.size();i++)
+		{
+			System.out.println(lista.get(i).toString());
+		}
+		
+	}
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
 

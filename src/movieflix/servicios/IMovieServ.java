@@ -17,5 +17,6 @@ public interface IMovieServ {
 	//public ArrayList<Pelicula>mostrarListaPelicula();
 	public boolean mostrarListaPelicula();
 	public boolean modificarPelicula(Pelicula p);
+	public void mostrarPeliculasSucritas(int id);
 
 }

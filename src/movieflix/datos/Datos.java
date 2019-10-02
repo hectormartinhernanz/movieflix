@@ -180,6 +180,39 @@ public class Datos implements IDatos {
 		}
 		return lista;
 	}
+	
+	
+	//*********************************
+	//TERMINAR
+	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas() {
+		ArrayList<Pelicula> lista =null;
+		try {
+			lista = new ArrayList<Pelicula>();
+			String sql = "SELECT idCategoria FROM suscripciones WHERE suscripciones.idusuario=;";
+			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+			}
+			st.close();
+			rs.close();			
+		} catch (SQLException e) {
+			System.out.println("Error con base de datos: " + e.toString());
+		} finally {
+			try {
+				if (!conexion.isClosed()) {
+					cerrarConexion();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return lista;
+	}
+	//*************************************
+	
 
 	@Override
 	public void modificarPelicula(int id) {
