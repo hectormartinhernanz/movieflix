@@ -24,6 +24,23 @@ public class Usuario {
 	public int getId() {
 		return id;
 	}
+	
+	
+	public Usuario(int id, String nombre, String ciudadResidencia) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.ciudadResidencia = ciudadResidencia;
+	}
+
+
+	public Usuario(int id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+
 	/**
 	* M�todo set id
 	*  @params el id del usuario
@@ -114,8 +131,8 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento
-				+ ", ciudadResidencia=" + ciudadResidencia + "]";
+		return "Usuario [id = " + id + ", nombre = " + nombre + ", fechaNacimiento = " + fechaNacimiento.getDate()+"-"+(fechaNacimiento.getMonth()+1)+"-"+(fechaNacimiento.getYear()+1900)+""
+				+ ", ciudadResidencia = " + ciudadResidencia + "]";
 	}
 	
 	

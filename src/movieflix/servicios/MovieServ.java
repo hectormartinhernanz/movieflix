@@ -11,6 +11,7 @@ import java.util.Date;
 import movieflix.datos.Datos;
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
+
 import java.text.ParseException;
 
 
@@ -36,7 +37,7 @@ public class MovieServ { //implements IMovieServ {
 			fechaDate = formato.parse(fecha);
 		}
 		catch (ParseException ex) {
-			System.out.println(ex);
+			System.out.println("Has introducido mal fecha");
 		}				
 		
 		
@@ -58,22 +59,42 @@ public class MovieServ { //implements IMovieServ {
 	
 	
 		
-	public boolean bajaUsuario(){
+	public void bajaUsuario(){
 		System.out.println("Introduzca el id del usuario para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaUsuario(id);
-		//
-		return true;
+
 	}
 	
-	/*public ArrayList<Usuario> mostrarListaUsuario() { 
+	public void mostrarUsuario() { 
+		System.out.println("Introduzca el id del usuario para mostrar sus datos");
+		int id=LeerDatos.tecladoInt();
+		ArrayList<Usuario> lista = d.mostrarUsuario(id);
+		for ( Usuario u : lista ) {
+			System.out.println(u.toString());
+		}
+	}
+	
+	/**
+	 * @author rocioBorrazas
+	 * @version 02/10
+	 */
+	
+	public void modificarUsuario(){
+		int id;
+		String respuesta;
+		String nombre;
 		
+		System.out.println("Introduzca el ID del usuario que desea modificar");
+		id = LeerDatos.tecladoInt();
+		
+		System.out.println("Introduzca el nombre del usuario");
+		nombre=LeerDatos.tecladoString();			
+
+		Usuario u = new Usuario (id, nombre);
+		new Datos().modificarUsuario(u);
 	}
-	*/
-	public boolean modificarUsuario(Usuario u){
-		return true;
-	}
-	
+
 	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pelicula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
@@ -104,18 +125,17 @@ public class MovieServ { //implements IMovieServ {
 		}	
 	
 	
-	public boolean bajaPelicula() {
+	public void bajaPelicula() {
 		System.out.println("Introduzca el id de la pel�cula para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaPelicula(id);		
-		return true;
 	}
 
 	public void mostrarListaPelicula(){
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las pel�culas disponibles:\n");
+		System.out.println("Estas son las peliculas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -123,6 +143,25 @@ public class MovieServ { //implements IMovieServ {
 		
 	}
 	
+//Probar
+	public void mostrarPeliculasSuscritas() {
+		
+		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
+		int tecl=LeerDatos.tecladoInt();
+		d.obtenerListaPeliculasSuscritas(tecl);
+		mostrarListaPelicula();
+	}
+	
+	public void mostrarListaUsuarios(){
+		
+		ArrayList<Usuario> lista = d.obtenerListaUsuarios();
+		System.out.println("Estos son los usuario:\n");
+		for(int i=0; i<lista.size();i++)
+		{
+			System.out.println(lista.get(i).toString());
+		}
+		
+	}
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
 
