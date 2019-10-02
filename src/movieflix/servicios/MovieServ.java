@@ -4,7 +4,6 @@
  * */
 package movieflix.servicios;
 import movieflix.utilidades.LeerDatos;
-import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,15 +67,16 @@ public class MovieServ { //implements IMovieServ {
 		//
 		return true;
 	}
-	
+	/*
 	public ArrayList<Usuario> mostrarListaUsuario() { 
 		
 	}
+	*/
 	public boolean modificarUsuario(Usuario u){
-		
+		return true;
 	}
 	
-	public boolean altaPelicula() {		
+	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pelï¿½cula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
 		System.out.println("Introduzca el anyo de la pelï¿½cula");
@@ -86,7 +86,7 @@ public class MovieServ { //implements IMovieServ {
 		//crear pelï¿½cula
 		Pelicula p = new Pelicula(nombre,anyo,cat);
 		d.altaPelicula(p);		
-		return true;
+		
 		}	
 	
 	
@@ -96,7 +96,19 @@ public class MovieServ { //implements IMovieServ {
 		d.bajaPelicula(id);		
 		return true;
 	}
+
+	public void mostrarListaPelicula(){
+		
 	
-	//public ArrayList<Pelicula>mostrarListaPelicula();{}
+		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
+		System.out.println("Estas son las películas disponibles:\n");
+		for(int i=0; i<lista.size();i++)
+		{
+			System.out.println(lista.get(i).toString());
+		}
+		
+	}
+	
+}
 	//public boolean modificarPelicula(Pelicula p);{}	
 //}

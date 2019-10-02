@@ -61,6 +61,7 @@ public class Datos implements IDatos {
 					}
 				}
 				ps.close();
+				br.close();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -119,8 +120,35 @@ public class Datos implements IDatos {
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try{
+		
+		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+		String sql = "SELECT * FROM peliculas;";
+		Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+	
+		while(rs.next()) 
+		{
+		
+			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+			
+			
+		}
+		st.close();
+		rs.close();
+		return lista;
+		}
+		catch(SQLException e) {
+			System.out.println("Error con base de datos: "+e.toString());
+
+			return null;}
+		finally {
+
+		}
+		
+		
 	}
 
 	@Override
