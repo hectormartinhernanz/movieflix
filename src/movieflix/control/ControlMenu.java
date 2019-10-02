@@ -110,13 +110,12 @@ public static void seleccionOpciones () {
 			 }
 		    mostrarMenu();
 	         }catch (Exception e) {
-			System.out.println("error: " + e.toString()  + "    Entrada de teclado erronea" );
+			System.out.println("error: " + e.toString()  + "    Entrada de teclado errónea" );
 			mostrarMenu();
 			
 	         }
 
 	
-
 	}
 
 }
