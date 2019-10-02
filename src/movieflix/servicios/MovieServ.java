@@ -87,9 +87,12 @@ public class MovieServ { //implements IMovieServ {
 			System.out.println("5. Animacion");
 			System.out.println("6. Thriller");	
 			
-			cat = LeerDatos.tecladoInt();	
+			cat = LeerDatos.tecladoInt();
+			if(cat<1 || cat >6) {
+				cat = 0;
+			}
 		}
-		while(cat<1 && cat>6);
+		while(cat==0);
 			
 
 		//crear pelicula
