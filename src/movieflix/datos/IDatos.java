@@ -9,6 +9,7 @@ public interface IDatos {
 	public boolean altaUsuario(Usuario u);
 	public boolean bajaUsuario(int id);
 	public ArrayList<Usuario> obtenerListaUsuario();
+	public ArrayList<Usuario> mostrarUsuario(int id);
 	public boolean modificarUsuario(int id);
 	
 	public boolean altaPelicula(Pelicula p);

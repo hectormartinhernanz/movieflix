@@ -81,8 +81,8 @@ public static void seleccionOpciones () {
 	
 			//MOSTRAR DATOS DE USUARIO EXISTENTE	
 			case 5:
-				//new MovieServ().
-				System.out.println("Baja de usuario realizada con éxito");
+				new MovieServ().mostrarUsuario();
+				
 				break;	
 	
 	        //MOSTRAR PELICULAS SUSCRITAS POR UN USUARIO
