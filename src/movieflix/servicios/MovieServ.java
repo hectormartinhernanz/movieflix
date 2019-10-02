@@ -73,8 +73,8 @@ public class MovieServ { //implements IMovieServ {
 	}
 	*/
 	public boolean modificarUsuario(Usuario u){
-		
-	}*/
+		return true;
+	}
 	
 	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pel�cula a dar de alta");
@@ -111,4 +111,4 @@ public class MovieServ { //implements IMovieServ {
 	
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
-}
+
