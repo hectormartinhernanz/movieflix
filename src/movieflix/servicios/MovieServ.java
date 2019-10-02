@@ -16,9 +16,7 @@ import java.text.ParseException;
 
 public class MovieServ { //implements IMovieServ {
 	
-	//Conectar con la base de datos
-	Datos d = new Datos();
-	
+	Datos d = new Datos();	
 	
 	public MovieServ() {
 			
@@ -77,13 +75,26 @@ public class MovieServ { //implements IMovieServ {
 	}
 	
 	public void altaPelicula() {		
-		System.out.println("Introduzca el nombre de la pel�cula a dar de alta");
+		System.out.println("Introduzca el nombre de la pelicula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
-		System.out.println("Introduzca el anyo de la pel�cula");
+		System.out.println("Introduzca el anyo de la pelicula");
 		int anyo = LeerDatos.tecladoInt();
-		System.out.println("Introduzca la categor�a de la pel�cula");
-		int cat = LeerDatos.tecladoInt();	
-		//crear pel�cula
+		int cat=0;
+		do {
+			System.out.println("Por favor, introduzca el numero de la categoria de la pelicula");
+			System.out.println("1. Policiaca");
+			System.out.println("2. Romantica");
+			System.out.println("3. Aventuras");
+			System.out.println("4. Comedia");
+			System.out.println("5. Animacion");
+			System.out.println("6. Thriller");	
+			
+			cat = LeerDatos.tecladoInt();	
+		}
+		while(cat<1 && cat>6);
+			
+
+		//crear pelicula
 		Pelicula p = new Pelicula(nombre,anyo,cat);
 		d.altaPelicula(p);		
 		

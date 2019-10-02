@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
+import movieflix.utilidades.LeerDatos;
 
 public class Datos implements IDatos {
 
@@ -72,8 +73,31 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public void altaUsuario(Usuario u) {
+	public boolean altaUsuario(Usuario u) {
+		try{
+			@SuppressWarnings("deprecation")
+			String day = ""+u.getFechaNacimiento().getDate();
+			@SuppressWarnings("deprecation")
+			String month = ""+(u.getFechaNacimiento().getMonth()+1);
+			@SuppressWarnings("deprecation")
+			String year = ""+(u.getFechaNacimiento().getYear()+1900);
+			if(day.length()<10) {day="0"+day;}
+			if(month.length()<10) {month="0"+month;}
+			
+System.out.println(day+""+month+""+year);
+		String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) "
+				+ "VALUES ('"+u.getNombre()+"', '"+year+"-"+month+"-"+day+"', '"+u.getCiudadResidencia()+"');");
+		Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
+		st.executeUpdate(sql);
 		
+		st.close();
+		con.close();
+		}
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
+		
+		return false;
 	}
 
 	@Override
@@ -127,12 +151,29 @@ public class Datos implements IDatos {
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		try {
-			ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
-			String sql = "SELECT * FROM peliculas;";
-			cargarConexion();
-			Statement st = conexion.createStatement();
-			ResultSet rs = st.executeQuery(sql);
+		
+		try{
+		
+		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+		String sql = "SELECT * FROM peliculas;";
+		Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+	
+		while(rs.next()) 
+		{
+		
+			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+			
+			
+		}
+		st.close();
+		rs.close();
+		con.close();
+		return lista;
+		}
+		catch(SQLException e) {
+			System.out.println("Error con base de datos: "+e.toString());
 
 			while (rs.next()) {
 				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));

@@ -92,7 +92,6 @@ public class Usuario {
 		
 	}	
 	
-	
 	public Usuario(int id, String nombre, Date fechaNacimiento) {
 		super();
 		this.id = id;
@@ -113,4 +112,12 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.ciudadResidencia = ciudadResidencia;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento
+				+ ", ciudadResidencia=" + ciudadResidencia + "]";
+	}
+	
+	
+	
 }
