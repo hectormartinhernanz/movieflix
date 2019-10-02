@@ -63,8 +63,7 @@ public class ControlMenu {
 
 			// MODIFICAR DATOS DE USUARIO EXISTENTE
 			case 4:
-				System.out.println("OPCI�N DISPONIBLE PR�XIMAMENTE");
-				// new MovieServ().modificarUsuario(null);
+				new MovieServ().modificarUsuario();
 				System.out.println("Modificaci�n exitosa");
 				break;
 
