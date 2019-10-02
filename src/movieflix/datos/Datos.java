@@ -115,7 +115,7 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public void modificarUsuario(int id) {
+	public void modificarUsuario(Usuario u) {
 		// TODO Auto-generated method stub
 	}
 
@@ -182,7 +182,7 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public void modificarPelicula(int id) {
+	public void modificarPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
 	}
 
