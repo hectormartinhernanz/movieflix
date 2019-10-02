@@ -47,7 +47,6 @@ public class Usuario {
 		
 	}	
 	
-	
 	public Usuario(int id, String nombre, Date fechaNacimiento) {
 		super();
 		this.id = id;
