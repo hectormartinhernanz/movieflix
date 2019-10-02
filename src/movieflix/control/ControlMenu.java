@@ -52,32 +52,32 @@ public class ControlMenu {
 			// DAR DE ALTA NUEVO USUARIO
 			case 2:
 				new MovieServ().altaUsuario();
-				System.out.println("Alta de usuario realizada con éxito");
+				System.out.println("Alta de usuario realizada con ï¿½xito");
 				break;
 
 			// DA DE BAJA USUARIO EXISTENTE
 			case 3:
 				new MovieServ().bajaUsuario();
-				System.out.println("Baja de usuario realizada con éxito");
+				System.out.println("Baja de usuario realizada con ï¿½xito");
 				break;
 
 			// MODIFICAR DATOS DE USUARIO EXISTENTE
 			case 4:
-				System.out.println("OPCIÓN DISPONIBLE PRÓXIMAMENTE");
+				System.out.println("OPCIï¿½N DISPONIBLE PRï¿½XIMAMENTE");
 				// new MovieServ().modificarUsuario(null);
-				System.out.println("Modificación exitosa");
+				System.out.println("Modificaciï¿½n exitosa");
 				break;
 
 			// MOSTRAR DATOS DE USUARIO EXISTENTE
 			case 5:
-				// new MovieServ().
-				System.out.println("Baja de usuario realizada con éxito");
-				break;
-
-			// MOSTRAR PELICULAS SUSCRITAS POR UN USUARIO
+				new MovieServ().mostrarUsuario();
+				
+				break;	
+	
+	        //MOSTRAR PELICULAS SUSCRITAS POR UN USUARIO
 			case 6:
 				// new MovieServ().
-				System.out.println("OPCIÓN DISPONIBLE PRÓXIMAMENTE");
+				System.out.println("OPCIï¿½N DISPONIBLE PRï¿½XIMAMENTE");
 				break;
 
 			// MOSTRAR LISTADO GENERAL DE PELICULAS

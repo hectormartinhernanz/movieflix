@@ -65,12 +65,18 @@ public class MovieServ { //implements IMovieServ {
 
 	}
 	
-	/*public ArrayList<Usuario> mostrarListaUsuario() { 
+	public boolean mostrarUsuario() { 
+		System.out.println("Introduzca el id del usuario para mostrar sus datos");
+		int id=LeerDatos.tecladoInt();
+		ArrayList<Usuario> lista = d.mostrarUsuario(id);
 		
+		for ( Usuario u : lista ) {
+			System.out.println(u.toString());
+		}
+		return true;
 	}
-	*/
-	public void modificarUsuario(Usuario u){
-	}
+	
+
 	
 	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pelicula a dar de alta");

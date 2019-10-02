@@ -5,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import movieflix.model.Pelicula;
@@ -78,34 +81,39 @@ public class Datos implements IDatos {
 			@SuppressWarnings("deprecation")
 			String day = "" + u.getFechaNacimiento().getDate();
 			@SuppressWarnings("deprecation")
-			String month = "" + (u.getFechaNacimiento().getMonth() + 1);
+			String month = ""+(u.getFechaNacimiento().getMonth()+1);//+ 1 porque enero empieza en 0
 			@SuppressWarnings("deprecation")
-			String year = "" + (u.getFechaNacimiento().getYear() + 1900);
-			if (day.length() < 10) {
-				day = "0" + day;
-			}
-			if (month.length() < 10) {
-				month = "0" + month;
-			}
-
-			System.out.println(day + "" + month + "" + year);
-			String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) " + "VALUES ('"
-					+ u.getNombre() + "', '" + year + "-" + month + "-" + day + "', '" + u.getCiudadResidencia()
-					+ "');");
-			Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD);
-			Statement st = con.createStatement();
-			st.executeUpdate(sql);
-
-			st.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Excepci�n SQL :" + e.toString());
+			String year = ""+(u.getFechaNacimiento().getYear()+1900);//+1900 porqu el a�o empieza desde el a�o 1900
+			if(day.length()<10) {day="0"+day;}
+			if(month.length()<10) {month="0"+month;}
+			
+System.out.println(day+""+month+""+year);
+		String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) "
+				+ "VALUES ('"+u.getNombre()+"', '"+year+"-"+month+"-"+day+"', '"+u.getCiudadResidencia()+"');");
+		cargarConexion();
+		//Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = conexion.createStatement();
+		st.executeUpdate(sql);
+		
+		st.close();
+		conexion.close();
 		}
 	}
 
 	@Override
-	public void bajaUsuario(int id) {
-		// TODO Auto-generated method stub
+	public boolean bajaUsuario(int id) {
+		try{
+		cargarConexion();
+		String sql = ("DELETE FROM usuarios WHERE id='"+id+"';");
+		Statement st = conexion.createStatement();
+		st.executeUpdate(sql);
+		
+		cerrarConexion();
+		return true;
+		}
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
+		return false;
 	}
 
 	@Override
@@ -192,5 +200,45 @@ public class Datos implements IDatos {
 
 	public void cerrarConexion() throws SQLException {
 		conexion.close();
+	}
+
+	@Override
+	public ArrayList<Usuario> mostrarUsuario(int id)  {
+		
+		try{
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+		cargarConexion();
+		String sql = ("SELECT * FROM usuarios WHERE id='"+id+"';");
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while(rs.next()) 
+		{
+			
+			String fecha = (String) rs.getString(3);
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			Date fechaDate= null;
+			try {
+				fechaDate = formato.parse(fecha);
+			}
+			catch (ParseException ex) {
+				System.out.println(ex);
+			}	
+		    /*
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = format.format( new Date()   );
+			Date   date       = format.parse ( "2009-12-31" );    
+			*/
+
+			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+		}
+		
+		cerrarConexion();
+		rs.close();
+		return lista;
+		}
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
+		return null;
 	}
 }

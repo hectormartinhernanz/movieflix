@@ -10,7 +10,8 @@ public interface IMovieServ {
 	public void altaUsuario();
 	public void bajaUsuario();
 	public ArrayList<Usuario> mostrarListaUsuario();
-	public void modificarUsuario(Usuario u);
+	public boolean mostrarUsuario();
+	public boolean modificarUsuario(Usuario u);
 	
 	public void altaPelicula();
 	public void bajaPelicula();
