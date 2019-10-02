@@ -63,15 +63,17 @@ public class MovieServ { //implements IMovieServ {
 	
 	
 		
-	public boolean bajaUsuario(){
+	public void bajaUsuario(){
 		System.out.println("Introduzca el id del usuario para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaUsuario(id);
-		//
-		return true;
+
 	}
-	/*
-	public ArrayList<Usuario> mostrarListaUsuario() { 
+	
+	public boolean mostrarUsuario() { 
+		System.out.println("Introduzca el id del usuario para mostrar sus datos");
+		int id=LeerDatos.tecladoInt();
+		ArrayList<Usuario> lista = d.mostrarUsuario(id);
 		
 	}
 	/**
@@ -112,10 +114,14 @@ public class MovieServ { //implements IMovieServ {
 		else {
 			Usuario u = new Usuario (id, nombre, fechaDate);
 			d.modificarUsuario(u);
+		for ( Usuario u : lista ) {
+			System.out.println(u.toString());
 		}
 		return true;
 		
 	}
+
+	
 
 	
 	public void altaPelicula() {		
@@ -133,9 +139,12 @@ public class MovieServ { //implements IMovieServ {
 			System.out.println("5. Animacion");
 			System.out.println("6. Thriller");	
 			
-			cat = LeerDatos.tecladoInt();	
+			cat = LeerDatos.tecladoInt();
+			if(cat<1 || cat >6) {
+				cat = 0;
+			}
 		}
-		while(cat<1 && cat>6);
+		while(cat==0);
 			
 
 		//crear pelicula
@@ -145,18 +154,17 @@ public class MovieServ { //implements IMovieServ {
 		}	
 	
 	
-	public boolean bajaPelicula() {
+	public void bajaPelicula() {
 		System.out.println("Introduzca el id de la pelï¿½cula para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaPelicula(id);		
-		return true;
 	}
 
 	public void mostrarListaPelicula(){
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las películas disponibles:\n");
+		System.out.println("Estas son las pelï¿½culas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -166,4 +174,4 @@ public class MovieServ { //implements IMovieServ {
 	
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
-//}
+

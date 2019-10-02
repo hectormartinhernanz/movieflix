@@ -7,15 +7,16 @@ import movieflix.model.Usuario;
 
 public interface IMovieServ {
 	
-	public boolean altaUsuario();
-	public boolean bajaUsuario();
+	public void altaUsuario();
+	public void bajaUsuario();
 	public ArrayList<Usuario> mostrarListaUsuario();
+	public boolean mostrarUsuario();
 	public boolean modificarUsuario(Usuario u);
 	
-	public boolean altaPelicula();
-	public boolean bajaPelicula();
+	public void altaPelicula();
+	public void bajaPelicula();
 	//public ArrayList<Pelicula>mostrarListaPelicula();
-	public boolean mostrarListaPelicula();
-	public boolean modificarPelicula(Pelicula p);
+	public void mostrarListaPelicula();
+	public void modificarPelicula(Pelicula p);
 
 }
