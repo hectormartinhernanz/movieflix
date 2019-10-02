@@ -111,23 +111,13 @@ public class Datos implements IDatos {
 
 	@Override
 	public boolean altaPelicula(Pelicula p) {
-		System.out.println("Introduzca el nombre de la película a dar de alta");
-		String nombre=LeerDatos.tecladoString();
-		System.out.println("Introduzca el anyo de la película");
-		int anyo = LeerDatos.tecladoInt();
-		System.out.println("Introduzca la categoría de la película");
-		int cat = LeerDatos.tecladoInt();	
-		//crear película
-		Pelicula pel = new Pelicula(nombre,anyo,cat);
-		d.altaPelicula(pel);		
+		
 		return true;
 	}
 
 	@Override
 	public boolean bajaPelicula(int id) {
-		System.out.println("Introduzca el id de la película para darle de baja");
-		int id2=LeerDatos.tecladoInt();
-		d.bajaPelicula(id);		
+	
 		return true;
 	}
 
