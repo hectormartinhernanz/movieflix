@@ -87,7 +87,7 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public boolean altaUsuario(Usuario u) {
+	public void altaUsuario(Usuario u) {
 		try{
 			@SuppressWarnings("deprecation")
 			String day = ""+u.getFechaNacimiento().getDate();
@@ -112,11 +112,11 @@ System.out.println(day+""+month+""+year);
 		catch(SQLException e) 
 		{System.out.println("Excepci�n SQL :"+e.toString());}
 		
-		return false;
+		
 	}
 
 	@Override
-	public boolean bajaUsuario(int id) {
+	public void bajaUsuario(int id) {
 		try{
 		cargarConexion();
 		String sql = ("DELETE FROM usuarios WHERE id='"+id+"';");
@@ -124,11 +124,11 @@ System.out.println(day+""+month+""+year);
 		st.executeUpdate(sql);
 		
 		cerrarConexion();
-		return true;
+		
 		}
 		catch(SQLException e) 
 		{System.out.println("Excepci�n SQL :"+e.toString());}
-		return false;
+	
 	}
 
 	@Override
@@ -137,22 +137,17 @@ System.out.println(day+""+month+""+year);
 		return null;
 	}
 
+
 	@Override
-	public void modificarUsuario(Usuario u) {
+	public void altaPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
-		return false;
+	
 	}
 
 	@Override
-	public boolean altaPelicula(Pelicula p) {
+	public void bajaPelicula(int id) {
 		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean bajaPelicula(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
@@ -187,11 +182,6 @@ System.out.println(day+""+month+""+year);
 			
 	}
 
-	@Override
-	public void modificarPelicula(Pelicula p) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	private void cargarConexion() throws SQLException {
 		conexion = DriverManager.getConnection(BBDD, USER, PASSWORD);
@@ -237,4 +227,14 @@ System.out.println(day+""+month+""+year);
 		{System.out.println("Excepci�n SQL :"+e.toString());}
 		return null;
 	}
-}
+
+	@Override
+	public void modificarUsuario(Usuario U) {
+		// TODO Auto-generated method stub
+	
+	}
+
+
+		
+	}
+

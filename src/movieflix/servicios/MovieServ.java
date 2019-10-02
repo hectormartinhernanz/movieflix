@@ -70,18 +70,21 @@ public class MovieServ { //implements IMovieServ {
 
 	}
 	
-	public boolean mostrarUsuario() { 
+	public void mostrarUsuario() { 
 		System.out.println("Introduzca el id del usuario para mostrar sus datos");
 		int id=LeerDatos.tecladoInt();
 		ArrayList<Usuario> lista = d.mostrarUsuario(id);
-		
+		for ( Usuario u : lista ) {
+			System.out.println(u.toString());
+		}
 	}
+	
 	/**
 	 * @author rocioBorrazas
 	 * @version 02/10
 	 */
 	
-	public boolean modificarUsuario(){
+	public void modificarUsuario(){
 		
 	
 		System.out.println("Introduzca el ID del usuario que desea modificar");
@@ -114,10 +117,7 @@ public class MovieServ { //implements IMovieServ {
 		else {
 			Usuario u = new Usuario (id, nombre, fechaDate);
 			d.modificarUsuario(u);
-		for ( Usuario u : lista ) {
-			System.out.println(u.toString());
 		}
-		return true;
 		
 	}
 
