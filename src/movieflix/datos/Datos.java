@@ -85,6 +85,29 @@ public class Datos implements IDatos {
 
 	@Override
 	public boolean altaUsuario(Usuario u) {
+		try{
+			@SuppressWarnings("deprecation")
+			String day = ""+u.getFechaNacimiento().getDate();
+			@SuppressWarnings("deprecation")
+			String month = ""+(u.getFechaNacimiento().getMonth()+1);
+			@SuppressWarnings("deprecation")
+			String year = ""+(u.getFechaNacimiento().getYear()+1900);
+			if(day.length()<10) {day="0"+day;}
+			if(month.length()<10) {month="0"+month;}
+			
+System.out.println(day+""+month+""+year);
+		String sql = ("INSERT INTO usuarios (nombreCompleto, fechaNacimiento, ciudadResidencia) "
+				+ "VALUES ('"+u.getNombre()+"', '"+year+"-"+month+"-"+day+"', '"+u.getCiudadResidencia()+"');");
+		Connection con = DriverManager.getConnection(BBDD, USER, PASSWORD); 
+		Statement st = con.createStatement();
+		st.executeUpdate(sql);
+		
+		st.close();
+		con.close();
+		}
+		catch(SQLException e) 
+		{System.out.println("Excepción SQL :"+e.toString());}
+		
 		return false;
 	}
 
@@ -138,6 +161,7 @@ public class Datos implements IDatos {
 		}
 		st.close();
 		rs.close();
+		con.close();
 		return lista;
 		}
 		catch(SQLException e) {

@@ -113,4 +113,12 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.ciudadResidencia = ciudadResidencia;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento
+				+ ", ciudadResidencia=" + ciudadResidencia + "]";
+	}
+	
+	
+	
 }
