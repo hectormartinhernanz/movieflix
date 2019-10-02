@@ -204,25 +204,34 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public ArrayList<Pelicula> obtenerListaPelicula() {
-		
-		try{
-		
-		ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
-		String sql = "SELECT * FROM peliculas;";
-		cargarConexion();
-		//Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD); 
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-	
-		while(rs.next()) 
-		{
-			lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
-		}
-		return lista;
-
-	}
-
+    public ArrayList<Pelicula> obtenerListaPelicula() {
+        
+        try{
+        
+        ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+        String sql = "SELECT * FROM peliculas;";
+        cargarConexion();
+        //Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD);
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+    
+        while(rs.next())
+        {
+            lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+        }
+        st.close();
+        rs.close();
+        cerrarConexion();
+        //con.close();
+        return lista;
+        }
+        catch(SQLException e) {
+            System.out.println("Error con base de datos: "+e.toString());
+            return null;}
+        finally {
+        }
+            
+    }
 	private void cargarConexion() throws SQLException {
 		conexion = DriverManager.getConnection(BBDD, USER, PASSWORD);
 	}
