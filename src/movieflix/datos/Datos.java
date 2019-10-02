@@ -140,19 +140,19 @@ System.out.println(day+""+month+""+year);
 	@Override
 	public void modificarUsuario(Usuario u) {
 		// TODO Auto-generated method stub
-		return false;
+		;
 	}
 
 	@Override
-	public boolean altaPelicula(Pelicula p) {
+	public void  altaPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
-		return false;
+		;
 	}
 
 	@Override
-	public boolean bajaPelicula(int id) {
+	public void bajaPelicula(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		;
 	}
 
 	@Override
@@ -190,7 +190,7 @@ System.out.println(day+""+month+""+year);
 	@Override
 	public void modificarPelicula(Pelicula p) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	private void cargarConexion() throws SQLException {

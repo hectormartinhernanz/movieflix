@@ -27,10 +27,10 @@ public class ControlMenu {
 		System.out.println("(5) Mostrar datos de usuario existente");
 		System.out.println("(6) Mostrar peliculas suscritas por un usuario");
 		System.out.println("(7) Mostrar listado general de peliculas");
-		// System.out.println("(8) ??? ");
+		
 		System.out.println("(0) SALIR");
 		System.out.println("__________________________________________________________________");
-		// procesarOpcion();
+	
 		seleccionOpciones();
 	}
 
@@ -52,20 +52,20 @@ public class ControlMenu {
 			// DAR DE ALTA NUEVO USUARIO
 			case 2:
 				new MovieServ().altaUsuario();
-				System.out.println("Alta de usuario realizada con �xito");
+				System.out.println("Alta de usuario realizada con exito");
 				break;
 
 			// DA DE BAJA USUARIO EXISTENTE
 			case 3:
 				new MovieServ().bajaUsuario();
-				System.out.println("Baja de usuario realizada con �xito");
+				System.out.println("Baja de usuario realizada con exito");
 				break;
 
 			// MODIFICAR DATOS DE USUARIO EXISTENTE
 			case 4:
-				System.out.println("OPCI�N DISPONIBLE PR�XIMAMENTE");
+				System.out.println("OPCION DISPONIBLE PROXIMAMENTE");
 				// new MovieServ().modificarUsuario(null);
-				System.out.println("Modificaci�n exitosa");
+				System.out.println("Modificacion exitosa");
 				break;
 
 			// MOSTRAR DATOS DE USUARIO EXISTENTE
@@ -74,10 +74,10 @@ public class ControlMenu {
 				
 				break;	
 	
-	        //MOSTRAR PELICULAS SUSCRITAS POR UN USUARIO
+	        //MOSTRAR PELICULAS CONTRATADAS POR UN USUARIO
 			case 6:
-				// new MovieServ().
-				System.out.println("OPCI�N DISPONIBLE PR�XIMAMENTE");
+				new MovieServ().mostrarPeliculasSuscritas();
+				System.out.println("OPCION DISPONIBLE PROXIMAMENTE");
 				break;
 
 			// MOSTRAR LISTADO GENERAL DE PELICULAS
@@ -86,11 +86,7 @@ public class ControlMenu {
 				new MovieServ().mostrarListaPelicula();
 				break;
 
-			// PARA HACER PRUEBAS
-			// case 8:
-			//
-			// break;
-
+	
 			case 0:
 				System.out.println("Hasta Luego!");
 				System.exit(0);
