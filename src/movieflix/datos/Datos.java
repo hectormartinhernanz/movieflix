@@ -102,17 +102,17 @@ System.out.println(day+""+month+""+year);
 
 	@Override
 	public boolean bajaUsuario(int id) {
-		try{
-		cargarConexion();
-		String sql = ("DELETE FROM usuarios WHERE id='"+id+"';");
-		Statement st = conexion.createStatement();
-		st.executeUpdate(sql);
-		
-		cerrarConexion();
-		return true;
+		try {
+			cargarConexion();
+			String sql = ("DELETE FROM usuarios WHERE id='" + id + "';");
+			Statement st = conexion.createStatement();
+			st.executeUpdate(sql);
+
+			cerrarConexion();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Excepci�n SQL :" + e.toString());
 		}
-		catch(SQLException e) 
-		{System.out.println("Excepci�n SQL :"+e.toString());}
 		return false;
 	}
 
@@ -162,7 +162,7 @@ System.out.println(day+""+month+""+year);
 
 	@Override
 	public ArrayList<Pelicula> obtenerListaPelicula() {
-		ArrayList<Pelicula> lista =null;
+		ArrayList<Pelicula> lista = null;
 		try {
 			lista = new ArrayList<Pelicula>();
 			String sql = "SELECT * FROM peliculas;";
@@ -173,7 +173,7 @@ System.out.println(day+""+month+""+year);
 				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
 			}
 			st.close();
-			rs.close();			
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Error con base de datos: " + e.toString());
 		} finally {
@@ -203,42 +203,40 @@ System.out.println(day+""+month+""+year);
 	}
 
 	@Override
-	public ArrayList<Usuario> mostrarUsuario(int id)  {
-		
-		try{
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
-		cargarConexion();
-		String sql = ("SELECT * FROM usuarios WHERE id='"+id+"';");
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		
-		while(rs.next()) 
-		{
-			
-			String fecha = (String) rs.getString(3);
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-			Date fechaDate= null;
-			try {
-				fechaDate = formato.parse(fecha);
-			}
-			catch (ParseException ex) {
-				System.out.println(ex);
-			}	
-		    /*
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			String dateString = format.format( new Date()   );
-			Date   date       = format.parse ( "2009-12-31" );    
-			*/
+	public ArrayList<Usuario> mostrarUsuario(int id) {
 
-			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+		try {
+			ArrayList<Usuario> lista = new ArrayList<Usuario>();
+			cargarConexion();
+			String sql = ("SELECT * FROM usuarios WHERE id='" + id + "';");
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				String fecha = (String) rs.getString(3);
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date fechaDate = null;
+				try {
+					fechaDate = formato.parse(fecha);
+				} catch (ParseException ex) {
+					System.out.println(ex);
+				}
+				/*
+				 * SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); String
+				 * dateString = format.format( new Date() ); Date date = format.parse (
+				 * "2009-12-31" );
+				 */
+
+				lista.add(new Usuario(rs.getInt(1), rs.getString(2), fechaDate, rs.getString(4)));
+			}
+
+			cerrarConexion();
+			rs.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println("Excepci�n SQL :" + e.toString());
 		}
-		
-		cerrarConexion();
-		rs.close();
-		return lista;
-		}
-		catch(SQLException e) 
-		{System.out.println("Excepci�n SQL :"+e.toString());}
 		return null;
 	}
 }
