@@ -58,20 +58,18 @@ public class MovieServ { //implements IMovieServ {
 	
 	
 		
-	public boolean bajaUsuario(){
+	public void bajaUsuario(){
 		System.out.println("Introduzca el id del usuario para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaUsuario(id);
-		//
-		return true;
+
 	}
 	
 	/*public ArrayList<Usuario> mostrarListaUsuario() { 
 		
 	}
 	*/
-	public boolean modificarUsuario(Usuario u){
-		return true;
+	public void modificarUsuario(Usuario u){
 	}
 	
 	public void altaPelicula() {		
@@ -101,11 +99,10 @@ public class MovieServ { //implements IMovieServ {
 		}	
 	
 	
-	public boolean bajaPelicula() {
+	public void bajaPelicula() {
 		System.out.println("Introduzca el id de la pel�cula para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaPelicula(id);		
-		return true;
 	}
 
 	public void mostrarListaPelicula(){
