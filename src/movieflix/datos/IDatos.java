@@ -8,7 +8,7 @@ import movieflix.model.Usuario;
 public interface IDatos {
 	public void altaUsuario(Usuario u);
 	public void bajaUsuario(int id);
-	public ArrayList<Usuario> obtenerListaUsuario();
+	public ArrayList<Usuario> obtenerListaUsuarios();
 	public void modificarUsuario(Usuario u);
 	public ArrayList<Usuario> mostrarUsuario(int id);
 	

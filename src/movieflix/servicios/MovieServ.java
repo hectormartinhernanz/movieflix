@@ -12,10 +12,6 @@ import movieflix.datos.Datos;
 import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 
 
@@ -139,7 +135,7 @@ public class MovieServ { //implements IMovieServ {
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las pel�culas disponibles:\n");
+		System.out.println("Estas son las peliculas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -147,6 +143,24 @@ public class MovieServ { //implements IMovieServ {
 		
 	}
 	
+//Probar
+	public void mostrarPeliculasSuscritas() {
+		
+		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
+		int tecl=LeerDatos.tecladoInt();
+		d.obtenerListaPeliculasSuscritas();
+	}
+	
+	public void mostrarListaUsuarios(){
+		
+		ArrayList<Usuario> lista = d.obtenerListaUsuarios();
+		System.out.println("Estos son los usuario:\n");
+		for(int i=0; i<lista.size();i++)
+		{
+			System.out.println(lista.get(i).toString());
+		}
+		
+	}
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
 
