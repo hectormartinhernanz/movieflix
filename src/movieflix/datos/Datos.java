@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Date;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -138,64 +137,62 @@ public class Datos implements IDatos {
 
 	@Override
 	public ArrayList<Usuario> obtenerListaUsuarios() {
-		
-		try{
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
-		cargarConexion();
-		String sql = ("SELECT * FROM usuarios;");
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		
-		while(rs.next()) 
-		{
-			
-			String fecha = (String) rs.getString(3);
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-			Date fechaDate= null;
-			try {
-				fechaDate = formato.parse(fecha);
-			}
-			catch (ParseException ex) {
-				System.out.println(ex);
-			}	
 
-			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+		try {
+			ArrayList<Usuario> lista = new ArrayList<Usuario>();
+			cargarConexion();
+			String sql = ("SELECT * FROM usuarios;");
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				String fecha = (String) rs.getString(3);
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date fechaDate = null;
+				try {
+					fechaDate = formato.parse(fecha);
+				} catch (ParseException ex) {
+					System.out.println(ex);
+				}
+
+				lista.add(new Usuario(rs.getInt(1), rs.getString(2), fechaDate, rs.getString(4)));
+			}
+
+			cerrarConexion();
+			rs.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println("Excepciï¿½n SQL :" + e.toString());
 		}
-		
-		cerrarConexion();
-		rs.close();
-		return lista;
-		}
-		catch(SQLException e) 
-		{System.out.println("Excepciï¿½n SQL :"+e.toString());}
 		return null;
-		
+
 	}
 
 	@Override
 	public void altaPelicula(Pelicula p) {
-        String sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
-        PreparedStatement ps;
-        try {
-            cargarConexion();
-            ps = conexion.prepareStatement(sql);
-            ps.setString(1, p.getNombre());
-            ps.setInt(2, p.getAnyo());
-            ps.setInt(3, p.getCat());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            try {
-                if (conexion.isClosed()) {
-                    cerrarConexion();
-                }
-            } catch (SQLException e) {
-                System.out.println("Fallo a cerrar la conexion");
-            }
-        }
-    }
+		String sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
+		PreparedStatement ps;
+		try {
+			cargarConexion();
+			ps = conexion.prepareStatement(sql);
+			ps.setString(1, p.getNombre());
+			ps.setInt(2, p.getAnyo());
+			ps.setInt(3, p.getCat());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conexion.isClosed()) {
+					cerrarConexion();
+				}
+			} catch (SQLException e) {
+				System.out.println("Fallo a cerrar la conexion");
+			}
+		}
+	}
 
 	@Override
 	public void bajaPelicula(int id) {
@@ -204,34 +201,33 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-    public ArrayList<Pelicula> obtenerListaPelicula() {
-        
-        try{
-        
-        ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
-        String sql = "SELECT * FROM peliculas;";
-        cargarConexion();
-        //Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD);
-        Statement st = conexion.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-    
-        while(rs.next())
-        {
-            lista.add(new Pelicula(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
-        }
-        st.close();
-        rs.close();
-        cerrarConexion();
-        //con.close();
-        return lista;
-        }
-        catch(SQLException e) {
-            System.out.println("Error con base de datos: "+e.toString());
-            return null;}
-        finally {
-        }
-            
-    }
+	public ArrayList<Pelicula> obtenerListaPelicula() {
+
+		try {
+
+			ArrayList<Pelicula> lista = new ArrayList<Pelicula>();
+			String sql = "SELECT * FROM peliculas;";
+			cargarConexion();
+			// Connection con =DriverManager.getConnection(BBDD, USER, PASSWORD);
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				lista.add(new Pelicula(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+			}
+			st.close();
+			rs.close();
+			cerrarConexion();
+			// con.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println("Error con base de datos: " + e.toString());
+			return null;
+		} finally {
+		}
+
+	}
+
 	private void cargarConexion() throws SQLException {
 		conexion = DriverManager.getConnection(BBDD, USER, PASSWORD);
 	}
@@ -241,43 +237,37 @@ public class Datos implements IDatos {
 	}
 
 	@Override
-	public ArrayList<Usuario> mostrarUsuario(int id)  {
-		
-		try{
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
-		cargarConexion();
-		String sql = ("SELECT * FROM usuarios WHERE id='"+id+"';");
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		
-		while(rs.next()) 
-		{
-			
-			String fecha = (String) rs.getString(3);
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-			Date fechaDate= null;
-			try {
-				fechaDate = formato.parse(fecha);
+	public ArrayList<Usuario> mostrarUsuario(int id) {
+
+		try {
+			ArrayList<Usuario> lista = new ArrayList<Usuario>();
+			cargarConexion();
+			String sql = ("SELECT * FROM usuarios WHERE id='" + id + "';");
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				String fecha = (String) rs.getString(3);
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date fechaDate = null;
+				try {
+					fechaDate = formato.parse(fecha);
+				} catch (ParseException ex) {
+					System.out.println(ex);
+				}
+
+				lista.add(new Usuario(rs.getInt(1), rs.getString(2), fechaDate, rs.getString(4)));
 			}
-			catch (ParseException ex) {
-				System.out.println(ex);
-			}	
 
-			
-
-			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+			cerrarConexion();
+			rs.close();
+			return lista;
+		} catch (SQLException e) {
+			System.out.println("Excepciï¿½n SQL :" + e.toString());
 		}
-		
-		cerrarConexion();
-		rs.close();
-		return lista;
-		}
-		catch(SQLException e) 
-		{System.out.println("Excepciï¿½n SQL :"+e.toString());}
 		return null;
 	}
-	
-	
 
 	@Override
 	public void modificarUsuario(Usuario u) {
@@ -286,10 +276,10 @@ public class Datos implements IDatos {
 		try {
 			cargarConexion();
 
-			sql = "UPDATE usuarios set nombreCompleto='"+u.getNombre()+"' WHERE id="+u.getId();
+			sql = "UPDATE usuarios set nombreCompleto='" + u.getNombre() + "' WHERE id=" + u.getId();
 			ps = conexion.prepareStatement(sql);
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -303,25 +293,25 @@ public class Datos implements IDatos {
 				e.printStackTrace();
 			}
 		}
+	}
 
-	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas(int id) throws SQLException {
-		System.out.println("***CUENTA PREMIUM***     Por defecto todos los Usuarios reciben el listado completo de peliculas\n");
-		String sql = "SELECT idusuario FROM usuario WHERE idusuarios="+ id +";";
-		cargarConexion();
-		Statement st = conexion.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		if (rs != null) {
-					
+	public ArrayList<Pelicula> obtenerListaPeliculasSuscritas(int id) {
+		System.out.println(
+				"***CUENTA PREMIUM***     Por defecto todos los Usuarios reciben el listado completo de peliculas\n");
+		try {
+			String sql = ("SELECT idusuario FROM usuario WHERE idusuarios=" + id + ";");
+			cargarConexion();
+			Statement st = conexion.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if (rs != null) {
+			} else {
+				System.out.println("No existe ningun usuario con ese id");
+			}
+			return obtenerListaPelicula();
+		} catch (Exception e) {
+			System.out.println("Excepción: " + e.toString());
 		}
-		else{System.out.println("No existe ningï¿½n usuario con ese id");
-		}
-		return obtenerListaPelicula();
-    }	
-	
-	
-	
-	
-		
+		return null;
 	}
 
 }

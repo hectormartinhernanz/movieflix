@@ -15,5 +15,5 @@ public interface IDatos {
 	public void altaPelicula(Pelicula p);
 	public void bajaPelicula(int id);
 	public ArrayList<Pelicula>obtenerListaPelicula();
-
+    public ArrayList<Pelicula>obtenerListaPeliculasSuscritas(int id);
 }
