@@ -168,14 +168,12 @@ public class MovieServ { //implements IMovieServ {
 		
 	}
 	
-//terminar
+//Probar
 	public void mostrarPeliculasSuscritas() {
 		
 		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
 		int tecl=LeerDatos.tecladoInt();
-		
-		//ArrayList<Pelicula> lista = d.obtenerListaPeliculasSuscritas();
-		System.out.println("Estas son las peliculas suscritas:\n");
+		d.obtenerListaPeliculasSuscritas();
 	}
 	
 	public void mostrarListaUsuarios(){
