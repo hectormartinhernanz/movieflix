@@ -127,14 +127,44 @@ System.out.println(day+""+month+""+year);
 		
 		}
 		catch(SQLException e) 
-		{System.out.println("Excepci�n SQL :"+e.toString());}
+		{System.out.println("Excepcion SQL :"+e.toString());}
 	
 	}
 
 	@Override
-	public ArrayList<Usuario> obtenerListaUsuario() {
-		// TODO Auto-generated method stub
+	public ArrayList<Usuario> obtenerListaUsuarios() {
+		
+		try{
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+		cargarConexion();
+		String sql = ("SELECT * FROM usuarios;");
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		while(rs.next()) 
+		{
+			
+			String fecha = (String) rs.getString(3);
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			Date fechaDate= null;
+			try {
+				fechaDate = formato.parse(fecha);
+			}
+			catch (ParseException ex) {
+				System.out.println(ex);
+			}	
+
+			lista.add(new Usuario(rs.getInt(1),rs.getString(2), fechaDate ,rs.getString(4)));
+		}
+		
+		cerrarConexion();
+		rs.close();
+		return lista;
+		}
+		catch(SQLException e) 
+		{System.out.println("Excepci�n SQL :"+e.toString());}
 		return null;
+		
 	}
 
 
