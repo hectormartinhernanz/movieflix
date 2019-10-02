@@ -16,9 +16,7 @@ import java.text.ParseException;
 
 public class MovieServ { //implements IMovieServ {
 	
-	//Conectar con la base de datos
-	Datos d = new Datos();
-	
+	Datos d = new Datos();	
 	
 	public MovieServ() {
 			
@@ -60,12 +58,11 @@ public class MovieServ { //implements IMovieServ {
 	
 	
 		
-	public boolean bajaUsuario(){
+	public void bajaUsuario(){
 		System.out.println("Introduzca el id del usuario para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaUsuario(id);
-		//
-		return true;
+
 	}
 	
 	public boolean mostrarUsuario() { 
@@ -82,31 +79,46 @@ public class MovieServ { //implements IMovieServ {
 
 	
 	public void altaPelicula() {		
-		System.out.println("Introduzca el nombre de la pelï¿½cula a dar de alta");
+		System.out.println("Introduzca el nombre de la pelicula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
-		System.out.println("Introduzca el anyo de la pelï¿½cula");
+		System.out.println("Introduzca el anyo de la pelicula");
 		int anyo = LeerDatos.tecladoInt();
-		System.out.println("Introduzca la categorï¿½a de la pelï¿½cula");
-		int cat = LeerDatos.tecladoInt();	
-		//crear pelï¿½cula
+		int cat=0;
+		do {
+			System.out.println("Por favor, introduzca el numero de la categoria de la pelicula");
+			System.out.println("1. Policiaca");
+			System.out.println("2. Romantica");
+			System.out.println("3. Aventuras");
+			System.out.println("4. Comedia");
+			System.out.println("5. Animacion");
+			System.out.println("6. Thriller");	
+			
+			cat = LeerDatos.tecladoInt();
+			if(cat<1 || cat >6) {
+				cat = 0;
+			}
+		}
+		while(cat==0);
+			
+
+		//crear pelicula
 		Pelicula p = new Pelicula(nombre,anyo,cat);
 		d.altaPelicula(p);		
 		
 		}	
 	
 	
-	public boolean bajaPelicula() {
+	public void bajaPelicula() {
 		System.out.println("Introduzca el id de la pelï¿½cula para darle de baja");
 		int id=LeerDatos.tecladoInt();
 		d.bajaPelicula(id);		
-		return true;
 	}
 
 	public void mostrarListaPelicula(){
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las películas disponibles:\n");
+		System.out.println("Estas son las pelï¿½culas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -116,4 +128,4 @@ public class MovieServ { //implements IMovieServ {
 	
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
-//}
+

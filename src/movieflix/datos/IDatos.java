@@ -6,14 +6,14 @@ import movieflix.model.Pelicula;
 import movieflix.model.Usuario;
 
 public interface IDatos {
-	public boolean altaUsuario(Usuario u);
-	public boolean bajaUsuario(int id);
+	public void altaUsuario(Usuario u);
+	public void bajaUsuario(int id);
 	public ArrayList<Usuario> obtenerListaUsuario();
 	public ArrayList<Usuario> mostrarUsuario(int id);
 	public boolean modificarUsuario(int id);
 	
-	public boolean altaPelicula(Pelicula p);
-	public boolean bajaPelicula(int id);
+	public void altaPelicula(Pelicula p);
+	public void bajaPelicula(int id);
 	public ArrayList<Pelicula>obtenerListaPelicula();
-	public boolean modificarPelicula(int id);
+	public void modificarPelicula(int id);
 }
