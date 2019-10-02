@@ -121,7 +121,7 @@ public class Datos implements IDatos {
 
 	@Override
 	public void altaPelicula(Pelicula p) {
-		String sql = "INSERT INTO peliulas (nombre,anyo,idCat)VALUES(?,?,?);";
+		String sql = "INSERT INTO peliculas (nombre,anyo,idCat)VALUES(?,?,?);";
 		PreparedStatement ps;
 
 		try {
