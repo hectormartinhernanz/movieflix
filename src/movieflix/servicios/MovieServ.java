@@ -81,45 +81,20 @@ public class MovieServ { //implements IMovieServ {
 	 */
 	
 	public void modificarUsuario(){
+		int id;
+		String respuesta;
+		String nombre;
 		
-	
 		System.out.println("Introduzca el ID del usuario que desea modificar");
-		int id = LeerDatos.tecladoInt();
-
+		id = LeerDatos.tecladoInt();
+		
 		System.out.println("Introduzca el nombre del usuario");
-		String nombre=LeerDatos.tecladoString();
-		
-		System.out.println("Introduzca la fecha de nacimiento (dd/mm/yyyy)");
-		String fecha= LeerDatos.tecladoString();
-		
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		Date fechaDate= null;
-		try {
-			fechaDate = formato.parse(fecha);
-		}
-		catch (ParseException ex) {
-			System.out.println(ex);
-		}				
-		
-		System.out.println("Si desea modificar la ciudad de residencia, escriba si y pulse enter. De lo contrario, escriba no y pulse enter");
-		String respuesta= LeerDatos.tecladoString();
-		
-		if(respuesta.equalsIgnoreCase("si")) {
-			System.out.println("Escriba la ciudad de residencia");
-			String ciudad=LeerDatos.tecladoString();		
-			Usuario u = new Usuario(id, nombre,fechaDate,ciudad);
-			d.modificarUsuario(u);			
-		}									
-		else {
-			Usuario u = new Usuario (id, nombre, fechaDate);
-			d.modificarUsuario(u);
-		}
-		
+		nombre=LeerDatos.tecladoString();			
+
+		Usuario u = new Usuario (id, nombre);
+		new Datos().modificarUsuario(u);
 	}
 
-	
-
-	
 	public void altaPelicula() {		
 		System.out.println("Introduzca el nombre de la pelicula a dar de alta");
 		String nombre=LeerDatos.tecladoString();
@@ -160,7 +135,7 @@ public class MovieServ { //implements IMovieServ {
 		
 	
 		ArrayList<Pelicula> lista = d.obtenerListaPelicula();
-		System.out.println("Estas son las pel�culas disponibles:\n");
+		System.out.println("Estas son las peliculas disponibles:\n");
 		for(int i=0; i<lista.size();i++)
 		{
 			System.out.println(lista.get(i).toString());
@@ -168,6 +143,13 @@ public class MovieServ { //implements IMovieServ {
 		
 	}
 	
+//Probar
+	public void mostrarPeliculasSuscritas() {
+		
+		System.out.println("Introduce el ID del usuario del que quieres ver las peliculas suscritas");
+		int tecl=LeerDatos.tecladoInt();
+		d.obtenerListaPeliculasSuscritas();
+	}
 	
 	public void mostrarListaUsuarios(){
 		
@@ -179,7 +161,6 @@ public class MovieServ { //implements IMovieServ {
 		}
 		
 	}
-	
 }
 	//public boolean modificarPelicula(Pelicula p);{}	
 

@@ -63,8 +63,7 @@ public class ControlMenu {
 
 			// MODIFICAR DATOS DE USUARIO EXISTENTE
 			case 4:
-				System.out.println("OPCI�N DISPONIBLE PR�XIMAMENTE");
-				// new MovieServ().modificarUsuario(null);
+				new MovieServ().modificarUsuario();
 				System.out.println("Modificaci�n exitosa");
 				break;
 
@@ -76,8 +75,9 @@ public class ControlMenu {
 	
 	        //MOSTRAR PELICULAS SUSCRITAS POR UN USUARIO
 			case 6:
-				// new MovieServ().
-				System.out.println("OPCION DISPONIBLE PROXIMAMENTE");
+				//new MovieServ().
+				System.out.println("OPCI�N DISPONIBLE PR�XIMAMENTE");
+				//new MovieServ().mostrarPeliculasSuscritas();
 				break;
 
 			// MOSTRAR LISTADO GENERAL DE PELICULAS
